@@ -1,4 +1,4 @@
 [submodule "nodejs"]
 	path = nodejs
 	url = https://github.com/nodejs/node.git
-	branch = v14.x
+	branch = v15.x
