@@ -9,7 +9,6 @@ echo $VERSION
 cp python.js $NODE_DIR/lib/
 cp python_node.cc $NODE_DIR/src/
 cp python_node.h $NODE_DIR/src/
-cp diff.patch $NODE_DIR
 
 cd $NODE_DIR;
-git apply diff.patch
+git apply ../diff.patch
