@@ -11,8 +11,9 @@ if [[ ! -f $PATCH_FILE ]] ; then
     exit
 fi
 
-
-#git submodule update  -i
+if [[ ! -f $NODE_DIR/README.md ]] ; then
+    git submodule update  -i
+fi
 
 cd $NODE_DIR;
 git reset --hard 
