@@ -1,5 +1,8 @@
 #!/bin/sh
 
+
+git submodule update -i
+
 NODE_DIR="nodejs"
 VERSION="1.0.0"
 echo $VERSION
