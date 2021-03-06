@@ -1,0 +1,360 @@
+diff --git a/lib/python.js b/lib/python.js
+new file mode 100644
+index 0000000000..1a066c6fbc
+--- /dev/null
++++ b/lib/python.js
+@@ -0,0 +1,191 @@
++// Copyright Joyent, Inc. and other Node contributors.
++//
++// Permission is hereby granted, free of charge, to any person obtaining a
++// copy of this software and associated documentation files (the
++// "Software"), to deal in the Software without restriction, including
++// without limitation the rights to use, copy, modify, merge, publish,
++// distribute, sublicense, and/or sell copies of the Software, and to permit
++// persons to whom the Software is furnished to do so, subject to the
++// following conditions:
++//
++// The above copyright notice and this permission notice shall be included
++// in all copies or substantial portions of the Software.
++//
++// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
++// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
++// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
++// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
++// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
++// USE OR OTHER DEALINGS IN THE SOFTWARE.
++
++// Note: In 0.8 and before, crypto functions all defaulted to using
++// binary-encoded strings rather than buffers.
++
++'use strict';
++
++const {
++    call
++} = internalBinding('python');
++
++module.exports = function() {return call(); }
++
++/*
++module.exports = {
++  // Methods
++  checkPrime,
++  checkPrimeSync,
++  createCipheriv,
++  createDecipheriv,
++  createDiffieHellman,
++  createDiffieHellmanGroup,
++  createECDH,
++  createHash,
++  createHmac,
++  createPrivateKey,
++  createPublicKey,
++  createSecretKey,
++  createSign,
++  createVerify,
++  diffieHellman,
++  generatePrime,
++  generatePrimeSync,
++  getCiphers,
++  getCipherInfo,
++  getCurves,
++  getDiffieHellman: createDiffieHellmanGroup,
++  getHashes,
++  hkdf,
++  hkdfSync,
++  pbkdf2,
++  pbkdf2Sync,
++  generateKeyPair,
++  generateKeyPairSync,
++  generateKey,
++  generateKeySync,
++  privateDecrypt,
++  privateEncrypt,
++  publicDecrypt,
++  publicEncrypt,
++  randomBytes,
++  randomFill,
++  randomFillSync,
++  randomInt,
++  randomUUID,
++  scrypt,
++  scryptSync,
++  sign: signOneShot,
++  setEngine,
++  timingSafeEqual,
++  getFips: !fipsMode ? getFipsDisabled :
++    fipsForced ? getFipsForced : getFipsCrypto,
++  setFips: !fipsMode ? setFipsDisabled :
++    fipsForced ? setFipsForced : setFipsCrypto,
++  verify: verifyOneShot,
++
++  // Classes
++  Certificate,
++  Cipher,
++  Cipheriv,
++  Decipher,
++  Decipheriv,
++  DiffieHellman,
++  DiffieHellmanGroup,
++  ECDH,
++  Hash,
++  Hmac,
++  KeyObject,
++  Sign,
++  Verify,
++  X509Certificate,
++  secureHeapUsed,
++};
++
++function setFipsDisabled() {
++  throw new ERR_CRYPTO_FIPS_UNAVAILABLE();
++}
++
++function setFipsForced(val) {
++  if (val) return;
++  throw new ERR_CRYPTO_FIPS_FORCED();
++}
++
++function getFipsDisabled() {
++  return 0;
++}
++
++function getFipsForced() {
++  return 1;
++}
++
++ObjectDefineProperty(constants, 'defaultCipherList', {
++  value: getOptionValue('--tls-cipher-list')
++});
++
++ObjectDefineProperties(module.exports, {
++  createCipher: {
++    enumerable: false,
++    value: deprecate(createCipher,
++                     'crypto.createCipher is deprecated.', 'DEP0106')
++  },
++  createDecipher: {
++    enumerable: false,
++    value: deprecate(createDecipher,
++                     'crypto.createDecipher is deprecated.', 'DEP0106')
++  },
++  // crypto.fips is deprecated. DEP0093. Use crypto.getFips()/crypto.setFips()
++  fips: {
++    get: !fipsMode ? getFipsDisabled :
++      fipsForced ? getFipsForced : getFipsCrypto,
++    set: !fipsMode ? setFipsDisabled :
++      fipsForced ? setFipsForced : setFipsCrypto
++  },
++  DEFAULT_ENCODING: {
++    enumerable: false,
++    configurable: true,
++    get: deprecate(getDefaultEncoding,
++                   'crypto.DEFAULT_ENCODING is deprecated.', 'DEP0091'),
++    set: deprecate(setDefaultEncoding,
++                   'crypto.DEFAULT_ENCODING is deprecated.', 'DEP0091')
++  },
++  constants: {
++    configurable: false,
++    enumerable: true,
++    value: constants
++  },
++
++  webcrypto: {
++    configurable: false,
++    enumerable: true,
++    get() { return lazyRequire('internal/crypto/webcrypto'); }
++  },
++
++  // Aliases for randomBytes are deprecated.
++  // The ecosystem needs those to exist for backwards compatibility.
++  prng: {
++    enumerable: false,
++    configurable: true,
++    writable: true,
++    value: pendingDeprecation ?
++      deprecate(randomBytes, 'crypto.prng is deprecated.', 'DEP0115') :
++      randomBytes
++  },
++  pseudoRandomBytes: {
++    enumerable: false,
++    configurable: true,
++    writable: true,
++    value: pendingDeprecation ?
++      deprecate(randomBytes,
++                'crypto.pseudoRandomBytes is deprecated.', 'DEP0115') :
++      randomBytes
++  },
++  rng: {
++    enumerable: false,
++    configurable: true,
++    writable: true,
++    value: pendingDeprecation ?
++      deprecate(randomBytes, 'crypto.rng is deprecated.', 'DEP0115') :
++      randomBytes
++  }
++});
++*/
+diff --git a/node.gyp b/node.gyp
+index e57a811a24..4c07105878 100644
+--- a/node.gyp
++++ b/node.gyp
+@@ -47,6 +47,7 @@
+       'lib/console.js',
+       'lib/constants.js',
+       'lib/crypto.js',
++      'lib/python.js',
+       'lib/cluster.js',
+       'lib/diagnostics_channel.js',
+       'lib/dgram.js',
+@@ -671,6 +672,8 @@
+         'src/udp_wrap.cc',
+         'src/util.cc',
+         'src/uv.cc',
++            'src/node_python.cc',
++            'src/node_python.h',
+         # headers to make for a more pleasant IDE experience
+         'src/aliased_buffer.h',
+         'src/aliased_struct.h',
+diff --git a/src/node_binding.cc b/src/node_binding.cc
+index 6c7ab4b21e..0cf8a5f9a0 100644
+--- a/src/node_binding.cc
++++ b/src/node_binding.cc
+@@ -52,6 +52,7 @@
+   V(fs_event_wrap)                                                             \
+   V(heap_utils)                                                                \
+   V(http2)                                                                     \
++  V(python)                                                                    \
+   V(http_parser)                                                               \
+   V(inspector)                                                                 \
+   V(js_stream)                                                                 \
+diff --git a/src/node_python.cc b/src/node_python.cc
+new file mode 100644
+index 0000000000..2bc8002e33
+--- /dev/null
++++ b/src/node_python.cc
+@@ -0,0 +1,83 @@
++// Copyright Joyent, Inc. and other Node contributors.
++//
++// Permission is hereby granted, free of charge, to any person obtaining a
++// copy of this software and associated documentation files (the
++// "Software"), to deal in the Software without restriction, including
++// without limitation the rights to use, copy, modify, merge, publish,
++// distribute, sublicense, and/or sell copies of the Software, and to permit
++// persons to whom the Software is furnished to do so, subject to the
++// following conditions:
++//
++// The above copyright notice and this permission notice shall be included
++// in all copies or substantial portions of the Software.
++//
++// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
++// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
++// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
++// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
++// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
++// USE OR OTHER DEALINGS IN THE SOFTWARE.
++
++#include "node_python.h"
++#include "async_wrap-inl.h"
++#include "debug_utils-inl.h"
++#include "threadpoolwork-inl.h"
++#include "memory_tracker-inl.h"
++
++#include "env-inl.h"
++#include "node_external_reference.h"
++#include "node_internals.h"
++#include "util-inl.h"
++
++#include "v8.h"
++#include "Python.h"
++
++namespace node {
++
++using v8::Context;
++using v8::Array;
++using v8::Context;
++using v8::FunctionCallbackInfo;
++using v8::HandleScope;
++using v8::Isolate;
++using v8::Local;
++using v8::MaybeLocal;
++using v8::Object;
++using v8::String;
++using v8::TryCatch;
++using v8::Uint32;
++using v8::Value;
++
++namespace python {
++
++static void SafeGetenv(const FunctionCallbackInfo<Value>& args) {
++  //args.GetReturnValue().Set(result);
++  Py_InitializeEx(0);
++  PyEval_InitThreads();
++  PyObject *sys_ = PyImport_ImportModule("sys");
++
++  args.GetReturnValue().Set(static_cast<uint32_t>(22));
++  //
++}
++
++void Initialize(Local<Object> target,
++                Local<Value> unused,
++                Local<Context> context,
++                void* priv) {
++	/*
++  static uv_once_t init_once = UV_ONCE_INIT;
++  uv_once(&init_once, InitCryptoOnce);
++  */
++
++  Environment* env = Environment::GetCurrent(context);
++  Isolate* isolate = env->isolate();
++
++  env->SetMethod(target, "call", SafeGetenv);
++
++}
++
++}  // namespace crypto
++}  // namespace node
++
++NODE_MODULE_CONTEXT_AWARE_INTERNAL(python, node::python::Initialize)
+diff --git a/src/node_python.h b/src/node_python.h
+new file mode 100644
+index 0000000000..94a45ff271
+--- /dev/null
++++ b/src/node_python.h
+@@ -0,0 +1,34 @@
++// Copyright Joyent, Inc. and other Node contributors.
++//
++// Permission is hereby granted, free of charge, to any person obtaining a
++// copy of this software and associated documentation files (the
++// "Software"), to deal in the Software without restriction, including
++// without limitation the rights to use, copy, modify, merge, publish,
++// distribute, sublicense, and/or sell copies of the Software, and to permit
++// persons to whom the Software is furnished to do so, subject to the
++// following conditions:
++//
++// The above copyright notice and this permission notice shall be included
++// in all copies or substantial portions of the Software.
++//
++// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
++// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
++// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
++// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
++// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
++// USE OR OTHER DEALINGS IN THE SOFTWARE.
++
++#ifndef SRC_NODE_PYTHON_H_
++#define SRC_NODE_PYTHON_H_
++
++#if defined(NODE_WANT_INTERNALS) && NODE_WANT_INTERNALS
++
++// All of the crypto definitions previously contained in this header
++// have been split across multiple headers in src/crypto. This header
++// remains for convenience for any code that still imports it. New
++// code should include the relevant src/crypto headers directly.
++
++#endif  // defined(NODE_WANT_INTERNALS) && NODE_WANT_INTERNALS
++
++#endif  // SRC_NODE_PYTHON_H_
+
