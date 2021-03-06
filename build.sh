@@ -6,7 +6,8 @@ echo $VERSION
 cd $NODE_DIR;
 git reset --hard 
 git clean -f -d
-cd -;
+cd ..
+
 git submodule update --remote -i
 
 cp python.js $NODE_DIR/lib/
