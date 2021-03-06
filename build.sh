@@ -18,7 +18,7 @@ git reset --hard
 git clean -f -d
 
 git fetch
-git reset --hard $NODE_VERSION.x
+git reset --hard origin/$NODE_VERSION.x
 
 cd ..
 
