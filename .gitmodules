@@ -1,3 +1,5 @@
 [submodule "nodejs"]
 	path = nodejs
 	url = https://github.com/nodejs/node.git
+	ignore = dirty
+
