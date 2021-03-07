@@ -37,17 +37,29 @@ jobs:
           #   }
     env:
       aversion: 3.7.10
+      PYTHON_VERSION: 3.9
 
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        if: matrix.config.os == 'windows-latest'
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install deps
+        if: matrix.config.os == 'windows-latest'
+        run: choco install nasm
+
       - name: run Builde with Node.js v14
+        if: matrix.config.os == 'windows-latest'
         shell: bash
         run: |
             bash ./build.sh v14 ${{env.aversion}} --using_github_actions
             ls -al
 
-      - name: BUILDING Python on Windows - run get_externals.bat 
+      - name: BUILDING on Windows - call .bat files
         if: matrix.config.os == 'windows-latest'
         run: |
             ./build_python.bat ${{ env.aversion }}
