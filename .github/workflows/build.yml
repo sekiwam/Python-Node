@@ -50,13 +50,7 @@ jobs:
       - name: BUILDING Python on Windows - run get_externals.bat 
         if: matrix.config.os == 'windows-latest'
         run: |
-            dir
             ./build_python.bat ${{ env.aversion }}
-            out/Python-${{ env.aversion }}/PCbuild/get_externals.bat
-            out/Python-${{ env.aversion }}/PCbuild/build.bat -p x64
-
-            dir out/Python-${{ env.aversion }}/PCbuild/amd64
-            dir out/Python-${{ env.aversion }}/Include
 
       - name: run Builde with Node.js v15
         shell: bash
