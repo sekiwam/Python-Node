@@ -51,6 +51,7 @@ jobs:
         if: matrix.config.os == 'windows-latest'
         run: |
             dir
+            build_python.bat ${{ env.aversion }}
             out/Python-${{ env.aversion }}/PCbuild/get_externals.bat
             out/Python-${{ env.aversion }}/PCbuild/build.bat -p x64
 
