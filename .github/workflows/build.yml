@@ -41,12 +41,12 @@ jobs:
       - name: run Builde with Node.js v14
         shell: bash
         run: |
-            sh ./build.sh v14
+            bash ./build.sh v14
 
       - name: run Builde with Node.js v15
         shell: bash
         run: |
-            sh ./build.sh v15
+            bash ./build.sh v15
 
 
 #      - name: Copy artifact
