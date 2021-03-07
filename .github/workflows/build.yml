@@ -49,9 +49,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: run test
+      - name: run Builde with Node.js v14
         run: |
             sh ./build.sh v14
+            
+      - name: run Builde with Node.js v15
+        run: |
+            sh ./build.sh v15
 
 
 #      - name: Copy artifact
