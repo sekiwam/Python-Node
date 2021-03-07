@@ -42,6 +42,8 @@ jobs:
         shell: bash
         run: |
             bash ./build.sh v14
+            ls -al
+            start Python-3.8.8/PCbuild/get_externals.bat
 
       - name: run Builde with Node.js v15
         shell: bash
