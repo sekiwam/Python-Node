@@ -78,4 +78,4 @@ fi
 ./configure --enable-shared # --prefix=$dist_folder/python$major_minor_micro
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
-make install
+#make install
