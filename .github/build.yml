@@ -1,0 +1,72 @@
+name: 🌕 CMake Build Matrix
+
+on: [push]
+
+jobs:
+  mybuild:
+    name: ${{ matrix.config.os }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+          - {
+              os: windows-latest,
+              bin: 'src/Release/main_run.exe',
+              testbin: 'tests/Release/main_tst.exe',
+              lspbin: 'lsp_vscode_server/Release/main_lsp.exe',
+              longrunning_bin: 'tests/long_running/Release/main_tst_long_running.exe',
+              cmakeConfig: '-A Win32 -T v142,host=x64',
+              cmakeBuildConfig: '--config Release',
+              runPuppeteer: '',
+              prescript: 'chcp 65001',
+              sudo: '  ',
+            }
+          - {
+              os: ubuntu-latest,
+              bin: './src/main_run',
+              testbin: './tests/main_tst',
+              longrunning_bin: './tests/long_running/main_tst_long_running',
+              lspbin: './lsp_vscode_server/main_lsp',
+              prescript: 'cat /proc/cpuinfo; export CXX=clang++',
+              cmakeConfig: ' -D NODOOR32=1 ',
+              cmakeBuildConfig: '',
+              sudo: ' sudo ',
+            }
+
+          - {
+              os: macos-latest,
+              bin: "./src/main_run",
+              runPuppeteer: '',
+              testbin: "./tests/main_tst",
+              longrunning_bin: './tests/long_running/main_tst_long_running',
+              lspbin: './lsp_vscode_server/main_lsp',
+              cmakeConfig: '',
+              cmakeBuildConfig: '',
+              sudo: ' ',
+              prescript: "",
+            }
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: run test
+        run: |
+            ./build.sh
+
+
+#      - name: Copy artifact
+#        shell: bash
+#        run: |
+#          cd build;
+#          mkdir -p deb/${{ matrix.config.os }};
+#          cp ${{ matrix.config.bin }} deb/${{ matrix.config.os }}
+#          cp ${{ matrix.config.testbin }} deb/${{ matrix.config.os }}
+#          cp ${{ matrix.config.lspbin }} deb/${{ matrix.config.os }}
+#          cp ${{ matrix.config.longrunning_bin }} deb/${{ matrix.config.os }}
+#
+#
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: python-lucene_${{ github.sha }}_amd64
+#          path: build/deb
+#
