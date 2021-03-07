@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 NODE_DIR="nodejs"
 VERSION="1.0.0"
 NODE_VERSION=$1
