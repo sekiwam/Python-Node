@@ -1,6 +1,4 @@
 name: 🌕 CMake Build Matrix
-env:
-  aversion: 3.8.8
 
 on: [push]
 
@@ -8,8 +6,7 @@ jobs:
   mybuild:
     name: ${{ matrix.config.os }}
     runs-on: ${{ matrix.config.os }}
-    env:
-      aversion: 3.7.10    
+    
     strategy:
       matrix:
         config:
@@ -38,6 +35,8 @@ jobs:
           #     sudo: ' ',
           #     prescript: "",
           #   }
+    env:
+      aversion: 3.7.10
 
     steps:
       - uses: actions/checkout@v2
@@ -51,11 +50,11 @@ jobs:
       - name: BUILDING Python on Windows - run get_externals.bat 
         if: matrix.config.os == 'windows-latest'
         run: |
-            out/Python-%aversion%/PCbuild/get_externals.bat
-            out/Python-%aversion%/PCbuild/build.bat -p x64
+            out/Python-$aversion/PCbuild/get_externals.bat
+            out/Python-$aversion/PCbuild/build.bat -p x64
 
-            dir out/Python-%aversion%/PCbuild/amd64
-            dir out/Python-%aversion%/Include
+            dir out/Python-$aversion/PCbuild/amd64
+            dir out/Python-$aversion/Include
 
       - name: run Builde with Node.js v15
         shell: bash
