@@ -35,3 +35,8 @@ cd ..
 python_url="https://www.python.org/ftp/python/3.8.8/Python-3.8.8.tgz"
 curl -O $python_url
 ls -al
+tar zxvf Python-3.8.8.tgz
+cd Python-3.8.8
+ls -al
+cd PCbuild
+start get_externals.bat
