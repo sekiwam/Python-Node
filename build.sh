@@ -98,4 +98,4 @@ git config user.name "Your Name"
 #git add .
 #git commit -a -m 'temp' 
 
-./configure && make tar -j8 SKIP_XZ=1
+./configure && make
