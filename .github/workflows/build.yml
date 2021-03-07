@@ -51,7 +51,7 @@ jobs:
 
       - name: run test
         run: |
-            ./build.sh
+            sh ./build.sh
 
 
 #      - name: Copy artifact
