@@ -30,3 +30,8 @@ cd $NODE_DIR;
 cat ../$PATCH_FILE
 git apply ../$PATCH_FILE
 cd ..
+
+
+python_url="https://www.python.org/ftp/python/3.8.8/Python-3.8.8.tgz"
+curl -O $python_url
+ls -al
