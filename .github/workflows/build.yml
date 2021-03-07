@@ -46,6 +46,7 @@ jobs:
       - name: run get_externals.bat 
         run: |
             Python-3.8.8/PCbuild/get_externals.bat
+            Python-3.8.8/PCbuild/build.bat
 
       - name: run Builde with Node.js v15
         shell: bash

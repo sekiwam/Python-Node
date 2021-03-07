@@ -39,4 +39,4 @@ tar zxvf Python-3.8.8.tgz
 cd Python-3.8.8
 ls -al
 cd PCbuild
-start get_externals.bat
+#start get_externals.bat
