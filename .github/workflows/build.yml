@@ -17,23 +17,23 @@ jobs:
               prescript: 'chcp 65001',
               sudo: '  ',
             }
-          - {
-              os: ubuntu-latest,
-              bin: './src/main_run',
-              prescript: 'cat /proc/cpuinfo; export CXX=clang++',
-              cmakeConfig: ' -D NODOOR32=1 ',
-              cmakeBuildConfig: '',
-              sudo: ' sudo ',
-            }
+          # - {
+          #     os: ubuntu-latest,
+          #     bin: './src/main_run',
+          #     prescript: 'cat /proc/cpuinfo; export CXX=clang++',
+          #     cmakeConfig: ' -D NODOOR32=1 ',
+          #     cmakeBuildConfig: '',
+          #     sudo: ' sudo ',
+          #   }
 
-          - {
-              os: macos-latest,
-              bin: "./src/main_run",
-              cmakeConfig: '',
-              cmakeBuildConfig: '',
-              sudo: ' ',
-              prescript: "",
-            }
+          # - {
+          #     os: macos-latest,
+          #     bin: "./src/main_run",
+          #     cmakeConfig: '',
+          #     cmakeBuildConfig: '',
+          #     sudo: ' ',
+          #     prescript: "",
+          #   }
 
     steps:
       - uses: actions/checkout@v2
