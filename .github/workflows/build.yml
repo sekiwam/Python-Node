@@ -8,6 +8,8 @@ jobs:
   mybuild:
     name: ${{ matrix.config.os }}
     runs-on: ${{ matrix.config.os }}
+    env:
+      aversion: 3.7.10    
     strategy:
       matrix:
         config:
