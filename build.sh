@@ -64,6 +64,10 @@ curl -O $python_url
 ls -al
 tar zxvf Python-$PYTHON_VER.tgz
 cd Python-$PYTHON_VER
+
+mv Include/node.h Include/node2.h
+cp -R Include/* ../../nodejs/src/
+cp -R PCbuild/pyconfig.h ../../nodejs/src/
 ls -al
 
 if [ "$machine" = "MinGw" ] ; then
