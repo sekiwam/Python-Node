@@ -65,9 +65,13 @@ ls -al
 tar zxvf Python-$PYTHON_VER.tgz
 cd Python-$PYTHON_VER
 
-mv Include/node.h Include/node2.h
+mv ../../nodejs/src/node.h ../../nodejs/src/node3.h
+
 cp -R Include/* ../../nodejs/src/
-cp -R PCbuild/pyconfig.h ../../nodejs/src/
+cp -R PC/pyconfig.h ../../nodejs/src/
+mv ../../nodejs/src/node.h ../../nodejs/src/node2.h
+mv ../../nodejs/src/node3.h ../../nodejs/src/node.h
+
 ls -al
 
 if [ "$machine" = "MinGw" ] ; then
