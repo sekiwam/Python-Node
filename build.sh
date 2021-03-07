@@ -40,13 +40,13 @@ git reset --hard origin/$NODE_VERSION.x
 
 cd ..
 
-cp python.js $NODE_DIR/lib/
-cp python_node.cc $NODE_DIR/src/
-cp python_node.h $NODE_DIR/src/
+# cp python.js $NODE_DIR/lib/
+# cp python_node.cc $NODE_DIR/src/
+# cp python_node.h $NODE_DIR/src/
 
 cd $NODE_DIR;
 cat ../$PATCH_FILE
-git apply ../$PATCH_FILE
+# git apply ../$PATCH_FILE
 cd ..
 
 
@@ -95,7 +95,7 @@ cd nodejs
 git config user.email "you@example.com"
 git config user.name "Your Name"
 
-git add .
-git commit -a -m 'temp' 
+#git add .
+#git commit -a -m 'temp' 
 
 ./configure && make tar -j8 SKIP_XZ=1
