@@ -64,15 +64,18 @@ ls -al
 tar zxvf Python-$PYTHON_VER.tgz
 cd Python-$PYTHON_VER
 ls -al
-cd PCbuild
 
-
-if  [ "$3" != "--using_github_actions" ] ; then
-    if [ "$machine" = "MinGw" ] ; then
+if [ "$machine" = "MinGw" ] ; then
+    if  [ "$3" != "--using_github_actions" ] ; then
+        cd PCbuild
         cd ../../..
         start build_python.bat $PYTHON_VER
-        exit
     fi 
+    exit
 fi
 
-echo "3000"
+
+./configure --enable-shared # --prefix=$dist_folder/python$major_minor_micro
+#./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
+make -j2
+make install
