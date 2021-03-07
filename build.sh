@@ -92,4 +92,6 @@ make -j2
 
 cd ../..
 cd nodejs
+git add .
+git commit -a -m 'temp' 
 ./configure && make tar -j8 SKIP_XZ=1
