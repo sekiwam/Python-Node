@@ -17,12 +17,13 @@ esac
 
 if [ -z "$PYTHON_VERSION" ]
 then
-    echo "\$No Python version specified, ex:3.8.8"
+    echo "Error: No Python version specified, ex:3.8.8"
+    exit
 fi
 
 
 if [[ ! -f $PATCH_FILE ]] ; then
-    echo "File $PATCH_FILE is not there, aborting. [v15, v14]"
+    echo "Error: File $PATCH_FILE is not there, aborting. [v15, v14]"
     exit
 fi
 
@@ -79,3 +80,4 @@ fi
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
 #make install
+

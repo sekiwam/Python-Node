@@ -10,6 +10,9 @@ call build.bat -p x64
 
 dir amd64
 
+cd ../../..
+cd nodejs
+call vcbuild.bat
 
 
 
