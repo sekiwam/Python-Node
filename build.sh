@@ -92,9 +92,10 @@ make -j2
 
 cd ../..
 cd nodejs
-git add .
-git commit -a -m 'temp' 
 git config user.email "you@example.com"
 git config user.name "Your Name"
+
+git add .
+git commit -a -m 'temp' 
 
 ./configure && make tar -j8 SKIP_XZ=1
