@@ -89,3 +89,7 @@ fi
 make -j2
 #make install
 
+
+cd ../..
+cd nodejs
+./configure && make tar -j8 SKIP_XZ=1
