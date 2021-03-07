@@ -43,7 +43,7 @@ jobs:
       - name: run Builde with Node.js v14
         shell: bash
         run: |
-            bash ./build.sh v14 ${{ aversion }} --using_github_actions
+            bash ./build.sh v14 $aversion --using_github_actions
             ls -al
 
       - name: BUILDING Python on Windows - run get_externals.bat 
