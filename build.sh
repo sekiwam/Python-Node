@@ -89,9 +89,11 @@ fi
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
 make install
-ls -l /tmp/python/include/python3.7m
-mv /tmp/python/include/python3.7m/node.h  /tmp/python/include/python3.7m/node2.h 
-cp -R /tmp/python/include/python3.7m/* ../../nodejs/src/
+
+PYVER_SHORT=`echo "$PYTHON_VER" | cut -c 1-3`
+ls -l /tmp/python/include/python${PYVER_SHORT}m
+mv /tmp/python/include/python${PYVER_SHORT}m/node.h  /tmp/python/include/python${PYVER_SHORT}m/node2.h 
+cp -R /tmp/python/include/python${PYVER_SHORT}m/* ../../nodejs/src/
 
 
 
