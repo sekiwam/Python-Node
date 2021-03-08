@@ -40,13 +40,13 @@ git reset --hard origin/$NODE_VERSION.x
 
 cd ..
 
-# cp python.js $NODE_DIR/lib/
-# cp python_node.cc $NODE_DIR/src/
-# cp python_node.h $NODE_DIR/src/
+cp python.js $NODE_DIR/lib/
+cp python_node.cc $NODE_DIR/src/
+cp python_node.h $NODE_DIR/src/
 
 cd $NODE_DIR;
 cat ../$PATCH_FILE
-# git apply ../$PATCH_FILE
+git apply ../$PATCH_FILE
 cd ..
 
 
