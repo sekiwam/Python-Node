@@ -70,10 +70,10 @@ jobs:
         run: |
             ./build_python.bat ${{ env.aversion }}
 
-      - name: run Builde with Node.js v15
-        shell: bash
-        run: |
-            bash ./build.sh v15 3.8.8 --using_github_actions
+      # - name: run Builde with Node.js v15
+      #   shell: bash
+      #   run: |
+      #       bash ./build.sh v15 3.8.8 --using_github_actions
 
 
 #      - name: Copy artifact
