@@ -51,13 +51,13 @@ cd ..
 
 
 
-mkdir out
-cd out
-
 
 # ----------------------------------------------------
 #                   Build Python
 # ----------------------------------------------------
+mkdir out
+cd out
+
 PYTHON_VER=$PYTHON_VERSION #$2 #"3.8.8"
 python_url="https://www.python.org/ftp/python/$PYTHON_VER/Python-$PYTHON_VER.tgz"
 curl -O $python_url
@@ -89,16 +89,20 @@ fi
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
 make install
+cd ../..
 
+
+# ----------------------------------------------------
+#                   Build Node.js
+# ----------------------------------------------------
 PYVER_SHORT=`echo "$PYTHON_VER" | cut -c 1-3`
 ls -l /tmp/python/include/python${PYVER_SHORT}m
 mv /tmp/python/include/python${PYVER_SHORT}m/node.h  /tmp/python/include/python${PYVER_SHORT}m/node2.h 
-cp -R /tmp/python/include/python${PYVER_SHORT}m/* ../../nodejs/src/
+cp -R /tmp/python/include/python${PYVER_SHORT}m/* $NODE_DIR/src/
 
 
+cd $NODE_DIR
 
-cd ../..
-cd nodejs
 git config user.email "you@example.com"
 git config user.name "Your Name"
 
