@@ -65,16 +65,17 @@ ls -al
 tar zxvf Python-$PYTHON_VER.tgz
 cd Python-$PYTHON_VER
 
-mv ../../nodejs/src/node.h ../../nodejs/src/node3.h
-
-cp -R Include/* ../../nodejs/src/
-cp -R PC/pyconfig.h ../../nodejs/src/
-mv ../../nodejs/src/node.h ../../nodejs/src/node2.h
-mv ../../nodejs/src/node3.h ../../nodejs/src/node.h
 
 ls -al
 
 if [ "$machine" = "MinGw" ] ; then
+    mv ../../nodejs/src/node.h ../../nodejs/src/node3.h
+
+    cp -R Include/* ../../nodejs/src/
+    cp -R PC/pyconfig.h ../../nodejs/src/
+    mv ../../nodejs/src/node.h ../../nodejs/src/node2.h
+    mv ../../nodejs/src/node3.h ../../nodejs/src/node.h
+
     if  [ "$3" != "--using_github_actions" ] ; then
         cd PCbuild
         cd ../../..
@@ -88,8 +89,10 @@ fi
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
 make install
-ls /tmp/python
-exit
+ls /tmp/python/include
+
+mv /tmp/python/include/node.h  /tmp/python/include/node2.h 
+cp -R /tmp/python/include/* ../../nodejs/src/
 
 
 cd ../..
