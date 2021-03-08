@@ -90,9 +90,8 @@ fi
 make -j2
 make install
 ls -l /tmp/python/include/python3.7m
-exit
-mv /tmp/python/include/node.h  /tmp/python/include/node2.h 
-cp -R /tmp/python/include/* ../../nodejs/src/
+mv /tmp/python/include/python3.7m/node.h  /tmp/python/include/python3.7m/node2.h 
+cp -R /tmp/python/include/python3.7m/* ../../nodejs/src/
 
 
 
