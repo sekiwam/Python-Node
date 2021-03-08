@@ -89,7 +89,7 @@ fi
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
 make install
-ls -l /tmp/python/include
+ls -l /tmp/python/include/python3.7m
 exit
 mv /tmp/python/include/node.h  /tmp/python/include/node2.h 
 cp -R /tmp/python/include/* ../../nodejs/src/
