@@ -38,7 +38,7 @@ jobs:
     env:
       aversion: 3.7.10
       PYTHON_VERSION: 3.9
-      NODE_VERSION: v14
+      NODE_VERSION: 'v14'
 
     steps:
       - uses: actions/checkout@v2
