@@ -84,10 +84,12 @@ if [ "$machine" = "MinGw" ] ; then
 fi
 
 
-./configure --enable-shared # --prefix=$dist_folder/python$major_minor_micro
+./configure --enable-shared --prefix=/tmp/python
 #./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
 make -j2
-#make install
+make install
+ls /tmp/python
+exit
 
 
 cd ../..
