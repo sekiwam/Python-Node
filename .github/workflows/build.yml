@@ -47,15 +47,18 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+
       - name: Install deps
         if: matrix.config.os == 'windows-latest'
         run: choco install nasm
 
+
       - name: Build with Node.js v14
         shell: bash
         run: |
-            bash ./build.sh v14 ${{env.aversion}} --using_github_actions
+            bash ./build.sh v14 ${{ env.aversion }} --using_github_actions
             ls -al
+
 
       - name: BUILDING on Windows - call .bat files
         if: matrix.config.os == 'windows-latest'
