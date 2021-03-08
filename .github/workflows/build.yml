@@ -38,6 +38,7 @@ jobs:
     env:
       aversion: 3.7.10
       PYTHON_VERSION: 3.9
+      NODE_VERSION: v14
 
     steps:
       - uses: actions/checkout@v2
@@ -53,10 +54,10 @@ jobs:
         run: choco install nasm
 
 
-      - name: Build with Node.js v14
+      - name: Build with Node.js ${{ NODE_VERSION }}
         shell: bash
         run: |
-            bash ./build.sh v14 ${{ env.aversion }} --using_github_actions
+            bash ./build.sh  ${{ NODE_VERSION }} ${{ env.aversion }} --using_github_actions
             ls -al
 
 
@@ -64,12 +65,6 @@ jobs:
         if: matrix.config.os == 'windows-latest'
         run: |
             ./build_python.bat ${{ env.aversion }}
-
-      # - name: run Builde with Node.js v15
-      #   shell: bash
-      #   run: |
-      #       bash ./build.sh v15 3.8.8 --using_github_actions
-
 
 #      - name: Copy artifact
 #        shell: bash

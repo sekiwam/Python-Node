@@ -19,7 +19,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#include "node_python.h"
+#include "python_node.h"
 #include "async_wrap-inl.h"
 #include "debug_utils-inl.h"
 #include "threadpoolwork-inl.h"
