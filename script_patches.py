@@ -11,6 +11,7 @@ def put_libraries(libraries):
     print(libraries)
     with open('nodejs/node.gypi', 'r') as file:
         filedata = file.read()
+        print("AAA")
 
 
         if not '-lrt' in filedata:
