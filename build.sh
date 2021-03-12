@@ -48,6 +48,7 @@ cd $NODE_DIR;
 cat ../$PATCH_FILE
 git apply ../$PATCH_FILE
 cd ..
+python3 ./script_patches.py
 
 
 
@@ -86,7 +87,7 @@ fi
 
 
 ./configure --enable-shared --prefix=/tmp/python
-#./configure --enable-optimizations --enable-shared --prefix=$dist_folder/python$major_minor_micro
+#./configure --enable-optimizations --enable-shared
 make -j2
 make install
 cd ../..
