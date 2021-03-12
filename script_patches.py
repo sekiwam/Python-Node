@@ -15,7 +15,7 @@ def put_libraries(libraries):
         if not 'libpython3' in filedata:
 
             # Replace the target string
-            filedata = filedata.replace('\'-lrt\'', '\'-lrt\'], \'libraries\': \'libpython3.8.so\'')
+            filedata = filedata.replace('\'-lrt\'', '\'-lrt\'], \'libraries\': [\'libpython3.8.so\'')
 
             # Write the file out again
             with open('nodejs/node.gypi', 'w') as file:
