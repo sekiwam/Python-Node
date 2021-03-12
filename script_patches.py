@@ -11,13 +11,8 @@ def put_libraries(libraries):
     print(libraries)
     with open('nodejs/node.gypi', 'r') as file:
         filedata = file.read()
-        print("AAA")
 
-
-        if not '-lrt' in filedata:
-            print("python in text")
-
-    
+        if not 'libpython3' in filedata:
 
             # Replace the target string
             filedata = filedata.replace('\'-lrt\'', '\'-lrt\',\'libpython3.8.so\'')
@@ -25,7 +20,6 @@ def put_libraries(libraries):
             # Write the file out again
             with open('nodejs/node.gypi', 'w') as file:
                 file.write(filedata)
-            pass
 
 
 print("args = " + str(sys.argv))
