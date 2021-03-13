@@ -13,7 +13,6 @@ def put_libraries(libraries):
         filedata = file.read()
 
         if not 'libpython3' in filedata:
-
             # Replace the target string
             filedata = filedata.replace('\'-lrt\'', '\'-lrt\'], \'libraries\': [\'libpython3.8.so\'')
 

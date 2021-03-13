@@ -15,8 +15,12 @@ case "${unameOut}" in
 esac
 
 
+crw=`pwd`
+temp_lib="$crw/lib"
+echo $temp_lib
+mkdir $temp_lib
 
-
+export PATH="$PATH:$temp_lib"
 
 if [ -z "$PYTHON_VERSION" ]
 then
@@ -106,6 +110,8 @@ cp -R /tmp/python/include/python${PYVER_SHORT}m/* $NODE_DIR/src/
 ls -l /tmp/python/include/python${PYVER_SHORT}
 mv /tmp/python/include/python${PYVER_SHORT}/node.h  /tmp/python/include/python${PYVER_SHORT}/node2.h 
 cp -R /tmp/python/include/python${PYVER_SHORT}/* $NODE_DIR/src/
+
+cp -R /tmp/python/lib/* $temp_lib/
 
 
 cd $NODE_DIR
