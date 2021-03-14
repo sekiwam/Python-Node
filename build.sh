@@ -53,7 +53,7 @@ cp python_node.h $NODE_DIR/src/
 
 cd $NODE_DIR;
 cat ../$PATCH_FILE
-git apply ../$PATCH_FILE
+#git apply ../$PATCH_FILE
 cd ..
 python3 ./script_patches.py $PYTHON_VERSION
 
