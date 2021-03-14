@@ -1,3 +1,24 @@
+diff --git a/node.gyp b/node.gyp
+index 63c8c50987..b884a0ff2e 100644
+--- a/node.gyp
++++ b/node.gyp
+@@ -47,6 +47,7 @@
+       'lib/console.js',
+       'lib/constants.js',
+       'lib/crypto.js',
++      'lib/python.js',
+       'lib/cluster.js',
+       'lib/diagnostics_channel.js',
+       'lib/dgram.js',
+@@ -679,6 +680,8 @@
+         'src/udp_wrap.cc',
+         'src/util.cc',
+         'src/uv.cc',
++            'src/python_node.cc',
++            'src/python_node.h',
+         # headers to make for a more pleasant IDE experience
+         'src/aliased_buffer.h',
+         'src/aliased_struct.h',
 diff --git a/src/node_binding.cc b/src/node_binding.cc
 index 6c7ab4b21e..0cf8a5f9a0 100644
 --- a/src/node_binding.cc
