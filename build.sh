@@ -55,8 +55,6 @@ python3 ./script_patches.py $PYTHON_VERSION
 
 # 'ldflags': [ "-Wl,-rpath='$$ORIGIN/./'"],
 
-
-
 # ----------------------------------------------------
 #                   Build Python
 # ----------------------------------------------------
@@ -90,7 +88,8 @@ if [ "$machine" = "MinGw" ] ; then
 fi
 
 
-./configure --enable-shared --prefix=/tmp/python
+PyPATH="/tmp/python"
+./configure --enable-shared --prefix=$PyPATH
 #./configure --enable-optimizations --enable-shared
 make -j2
 make install
@@ -102,13 +101,13 @@ cd ../..
 # ----------------------------------------------------
 PYVER_SHORT=`echo "$PYTHON_VER" | cut -c 1-3`
 
-ls -l /tmp/python/include/python${PYVER_SHORT}m
-mv /tmp/python/include/python${PYVER_SHORT}m/node.h  /tmp/python/include/python${PYVER_SHORT}m/node2.h 
-cp -R /tmp/python/include/python${PYVER_SHORT}m/* $NODE_DIR/src/
+ls -l $PyPATH/include/python${PYVER_SHORT}m
+mv $PyPATH/include/python${PYVER_SHORT}m/node.h  $PyPATH/include/python${PYVER_SHORT}m/node2.h 
+cp -R $PyPATH/include/python${PYVER_SHORT}m/* $NODE_DIR/src/
 
-ls -l /tmp/python/include/python${PYVER_SHORT}
-mv /tmp/python/include/python${PYVER_SHORT}/node.h  /tmp/python/include/python${PYVER_SHORT}/node2.h 
-cp -R /tmp/python/include/python${PYVER_SHORT}/* $NODE_DIR/src/
+ls -l $PyPATH/include/python${PYVER_SHORT}
+mv $PyPATH/include/python${PYVER_SHORT}/node.h  $PyPATH/include/python${PYVER_SHORT}/node2.h 
+cp -R $PyPATH/include/python${PYVER_SHORT}/* $NODE_DIR/src/
 
 
 cd $NODE_DIR
@@ -120,8 +119,7 @@ git config user.name "Your Name"
 #git commit -a -m 'temp' 
 
 ./configure
-#cp -R /tmp/python/lib/* out/
 mkdir out/Release
-cp -R /tmp/python/lib/* out/Release/
+cp -R $PyPATH/lib/* out/Release/
 
- make
+make
