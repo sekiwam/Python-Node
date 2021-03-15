@@ -91,7 +91,7 @@ fi
 PyPATH="/tmp/python"
 ./configure --enable-shared --prefix=$PyPATH
 #./configure --enable-optimizations --enable-shared
-make -j6
+make -j$(nproc)
 make install
 cd ../..
 
@@ -123,4 +123,4 @@ mkdir out/Release
 mkdir out/Release/obj
 cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
-make -j6
+make -j$(nproc)
