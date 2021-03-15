@@ -120,5 +120,8 @@ git config user.name "Your Name"
 
 ./configure
 mkdir out/Release
+mkdir out/Release/obj
+cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
+cp -R $PyPATH/lib/* out/Release/obj
 make -j6
