@@ -29,6 +29,7 @@ def put_libraries(libraries):
         if not '/./' in filedata:
             # Replace the target string
             filedata = filedata.replace("'target_name': 'node_mksnapshot'", "'target_name': 'node_mksnapshot', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
+            filedata = filedata.replace("'target_name': 'mkcodecache'", "'target_name': 'mkcodecache', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
 
             # Replace the target string
             filedata = filedata.replace("'target_name': 'cctest'", "'target_name': 'cctest', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
