@@ -121,4 +121,4 @@ git config user.name "Your Name"
 ./configure
 mkdir out/Release
 cp -R $PyPATH/lib/* out/Release/
-make
+make -j6
