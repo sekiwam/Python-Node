@@ -3,7 +3,6 @@
 import sys
 import platform
 
-
 platform_system = platform.system()
 
 
