@@ -108,8 +108,6 @@ ls -l /tmp/python/include/python${PYVER_SHORT}
 mv /tmp/python/include/python${PYVER_SHORT}/node.h  /tmp/python/include/python${PYVER_SHORT}/node2.h 
 cp -R /tmp/python/include/python${PYVER_SHORT}/* $NODE_DIR/src/
 
-cp -R /tmp/python/lib/* $NODE_DIR/out/Release/
-
 
 cd $NODE_DIR
 
@@ -119,4 +117,11 @@ git config user.name "Your Name"
 #git add .
 #git commit -a -m 'temp' 
 
-./configure && make
+./configure
+cp -R /tmp/python/lib/* $NODE_DIR/out/Release/
+cp -R /tmp/python/lib/* $NODE_DIR/out/Release/obj/
+cp -R /tmp/python/lib/* $NODE_DIR/
+
+
+
+ make
