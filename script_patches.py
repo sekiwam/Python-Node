@@ -34,7 +34,6 @@ def put_libraries(libraries):
             with open('nodejs/node.gyp', 'w') as file:
                 file.write(filedata)
 
-        if not '/./' in filedata:
             # Replace the target string
             filedata = filedata.replace("'target_name': 'cctest'", "'target_name': 'cctest', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
 
