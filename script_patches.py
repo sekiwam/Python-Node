@@ -25,7 +25,7 @@ def put_libraries(libraries):
 
 
 # 'ldflags': [ "-Wl,-rpath='$$ORIGIN/./'"],
-# 'target_name': 'node_mksnapshot'
+
         if not '/./' in filedata:
             # Replace the target string
             filedata = filedata.replace("'target_name': 'node_mksnapshot'", "'target_name': 'node_mksnapshot', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
