@@ -118,9 +118,8 @@ git config user.name "Your Name"
 #git commit -a -m 'temp' 
 
 ./configure
-cp -R /tmp/python/lib/* $NODE_DIR/out/Release/
-cp -R /tmp/python/lib/* $NODE_DIR/out/Release/obj/gen
-cp -R /tmp/python/lib/* ./
+cp -R /tmp/python/lib/* out/Release/
+cp -R /tmp/python/lib/* out/Release/obj
 
 
 
