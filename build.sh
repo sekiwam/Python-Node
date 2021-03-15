@@ -58,6 +58,8 @@ cd ..
 python3 ./script_patches.py $PYTHON_VERSION
 
 
+# 'ldflags': [ "-Wl,-rpath='$$ORIGIN/./'"],
+
 
 
 # ----------------------------------------------------
