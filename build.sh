@@ -120,7 +120,6 @@ git config user.name "Your Name"
 
 ./configure
 mkdir out/Release
-mkdir out/Release/obj
 cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
 make -j$(nproc)
