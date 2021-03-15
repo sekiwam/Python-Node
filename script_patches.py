@@ -30,10 +30,6 @@ def put_libraries(libraries):
             # Replace the target string
             filedata = filedata.replace("'target_name': 'node_mksnapshot'", "'target_name': 'node_mksnapshot', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
 
-            # Write the file out again
-            with open('nodejs/node.gyp', 'w') as file:
-                file.write(filedata)
-
             # Replace the target string
             filedata = filedata.replace("'target_name': 'cctest'", "'target_name': 'cctest', 'ldflags': [ \"-Wl,-rpath='$$ORIGIN/./'\"]")
 
