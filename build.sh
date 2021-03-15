@@ -119,8 +119,8 @@ git config user.name "Your Name"
 
 ./configure
 cp -R /tmp/python/lib/* $NODE_DIR/out/Release/
-cp -R /tmp/python/lib/* $NODE_DIR/out/Release/obj/
-cp -R /tmp/python/lib/* $NODE_DIR/
+cp -R /tmp/python/lib/* $NODE_DIR/out/Release/obj/gen
+cp -R /tmp/python/lib/* ./
 
 
 
