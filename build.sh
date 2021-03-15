@@ -121,6 +121,7 @@ git config user.name "Your Name"
 
 ./configure
 #cp -R /tmp/python/lib/* out/
+mkdir out/Release
 cp -R /tmp/python/lib/* out/Release/
 
  make
