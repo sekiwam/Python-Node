@@ -118,6 +118,7 @@ git config user.name "Your Name"
 #git commit -a -m 'temp' 
 
 ./configure
+cp -R /tmp/python/lib/* out/
 cp -R /tmp/python/lib/* out/Release/
 cp -R /tmp/python/lib/* out/Release/obj
 
