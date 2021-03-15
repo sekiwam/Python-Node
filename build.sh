@@ -101,9 +101,11 @@ cd ../..
 #                   Build Node.js
 # ----------------------------------------------------
 PYVER_SHORT=`echo "$PYTHON_VER" | cut -c 1-3`
+
 ls -l /tmp/python/include/python${PYVER_SHORT}m
 mv /tmp/python/include/python${PYVER_SHORT}m/node.h  /tmp/python/include/python${PYVER_SHORT}m/node2.h 
 cp -R /tmp/python/include/python${PYVER_SHORT}m/* $NODE_DIR/src/
+
 ls -l /tmp/python/include/python${PYVER_SHORT}
 mv /tmp/python/include/python${PYVER_SHORT}/node.h  /tmp/python/include/python${PYVER_SHORT}/node2.h 
 cp -R /tmp/python/include/python${PYVER_SHORT}/* $NODE_DIR/src/
@@ -118,10 +120,7 @@ git config user.name "Your Name"
 #git commit -a -m 'temp' 
 
 ./configure
-cp -R /tmp/python/lib/* out/
+#cp -R /tmp/python/lib/* out/
 cp -R /tmp/python/lib/* out/Release/
-cp -R /tmp/python/lib/* out/Release/obj
-
-
 
  make
