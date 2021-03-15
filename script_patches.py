@@ -60,4 +60,3 @@ elif platform_system == "Darwin":
 
 if libraries:
     put_libraries(libraries)
-
