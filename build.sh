@@ -91,7 +91,7 @@ fi
 PyPATH="/tmp/python"
 ./configure --enable-shared --prefix=$PyPATH
 #./configure --enable-optimizations --enable-shared
-make -j2
+make -j6
 make install
 cd ../..
 
