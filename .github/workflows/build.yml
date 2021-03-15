@@ -36,7 +36,7 @@ jobs:
           #     prescript: "",
           #   }
     env:
-      aversion: 3.7.10
+      aversion: 3.8.8
       PYTHON_VERSION: 3.9
       NODE_VERSION: 'v15'
 
