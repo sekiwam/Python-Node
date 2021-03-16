@@ -16,9 +16,9 @@ cd ../../..
 mkdir nodejs\out
 mkdir nodejs\out\Release
 mkdir nodejs\out\Release\lib
-copy out\Python-%1\PCbuild\amd64\python38.lib nodejs\out\Release
+
 copy out\Python-%1\PCbuild\amd64\python38.lib nodejs\
-copy outPython-%1\PCbuild\amd64\python38.lib nodejs\out\Release\lib
+copy out\Python-%1\PCbuild\amd64\python38.lib nodejs\out\Release
 
 dir nodejs\out\Release\
 
