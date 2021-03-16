@@ -15,6 +15,9 @@ mkdir ../../../nodejs/out/Release/lib
 copy amd64\python38.lib ../../../nodejs/out/Release/
 copy amd64\python38.lib ../../../nodejs/out/Release/lib/
 
+dir ../../../nodejs/out/Release/
+
+
 cd ../../..
 cd nodejs
 call vcbuild.bat
