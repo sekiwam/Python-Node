@@ -57,6 +57,5 @@ elif platform_system == "Linux":
 elif platform_system == "Darwin":
     pass
 
-
 if libraries:
     put_libraries(libraries)
