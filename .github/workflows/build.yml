@@ -10,22 +10,22 @@ jobs:
     strategy:
       matrix:
         config:
-          # - {
-          #     os: windows-latest,
-          #     bin: 'src/Release/main_run.exe',
-          #     cmakeConfig: '-A Win32 -T v142,host=x64',
-          #     cmakeBuildConfig: '--config Release',
-          #     prescript: 'chcp 65001',
-          #     sudo: '  ',
-          #   }
           - {
-              os: ubuntu-latest,
-              bin: './src/main_run',
-              prescript: 'cat /proc/cpuinfo; export CXX=clang++',
-              cmakeConfig: ' -D NODOOR32=1 ',
-              cmakeBuildConfig: '',
-              sudo: ' sudo ',
+              os: windows-latest,
+              bin: 'src/Release/main_run.exe',
+              cmakeConfig: '-A Win32 -T v142,host=x64',
+              cmakeBuildConfig: '--config Release',
+              prescript: 'chcp 65001',
+              sudo: '  ',
             }
+          # - {
+          #     os: ubuntu-latest,
+          #     bin: './src/main_run',
+          #     prescript: 'cat /proc/cpuinfo; export CXX=clang++',
+          #     cmakeConfig: ' -D NODOOR32=1 ',
+          #     cmakeBuildConfig: '',
+          #     sudo: ' sudo ',
+          #   }
 
           # - {
           #     os: macos-latest,
