@@ -12,8 +12,8 @@ dir amd64
 mkdir ../../../nodejs/out
 mkdir ../../../nodejs/out/Release
 mkdir ../../../nodejs/out/Release/lib
-copy amd64\python38.lib ../../../nodejs/out/Release/
-copy amd64\python38.lib ../../../nodejs/out/Release/lib/
+copy amd64/python38.lib ../../../nodejs/out/Release/
+copy amd64/python38.lib ../../../nodejs/out/Release/lib/
 
 dir ../../../nodejs/out/Release/
 
