@@ -18,7 +18,6 @@ mkdir nodejs\out\Release
 mkdir nodejs\out\Release\lib
 
 copy out\Python-%1\PCbuild\amd64\python38.lib nodejs\
-copy out\Python-%1\PCbuild\amd64\python38.lib nodejs\out\Release
 
 dir nodejs\out\Release\
 
