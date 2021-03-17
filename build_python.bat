@@ -2,7 +2,7 @@
 echo %%0 = %0
 echo %%1 = %1
 
-dir out/Python-%1/Include
+dir out\Python-%1\Include
 
 cd out/Python-%1/PCbuild
 call get_externals.bat
