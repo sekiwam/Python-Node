@@ -17,13 +17,3 @@ dir nodejs
 
 cd nodejs
 call vcbuild.bat
-
-
-
-
-
-
-
-
-
-
