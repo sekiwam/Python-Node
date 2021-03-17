@@ -10,19 +10,10 @@ call build.bat -p x64
 
 dir amd64
 
-
 cd ../../..
 
-mkdir nodejs\out
-mkdir nodejs\out\Release
-mkdir nodejs\out\Release\lib
-
 copy out\Python-%1\PCbuild\amd64\python38.lib nodejs\
-
-dir nodejs\out\Release\
-
-
-
+dir nodejs
 
 cd nodejs
 call vcbuild.bat
