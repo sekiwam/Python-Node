@@ -17,6 +17,7 @@ esac
 
 
 
+
 if [ -z "$PYTHON_VERSION" ]
 then
     echo "Error: No Python version specified, ex:3.8.8"
