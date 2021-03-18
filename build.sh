@@ -122,4 +122,10 @@ git config user.name "Your Name"
 mkdir out/Release
 cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
-make -j$(nproc)
+# make -j$(nproc)
+memsize=`grep MemTotal /proc/meminfo | awk '{print $2}'`
+if [ $memsize -gt 3000000 ] ; then echo $a; 
+    make -j$(nproc)
+else
+    make
+fi
