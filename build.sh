@@ -45,6 +45,8 @@ cd ..
 cp python.js $NODE_DIR/lib/
 cp python_node.cc $NODE_DIR/src/
 cp python_node.h $NODE_DIR/src/
+cp ./*.cc $NODE_DIR/src/
+cp ./*.h $NODE_DIR/src/
 
 cd $NODE_DIR;
 cat ../$PATCH_FILE
@@ -122,9 +124,10 @@ git config user.name "Your Name"
 mkdir out/Release
 cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
-# make -j$(nproc)
+
 memsize=`grep MemTotal /proc/meminfo | awk '{print $2}'`
-if [ $memsize -gt 3000000 ] ; then echo $a; 
+if [ $memsize -gt 3000000 ] ; then
+    echo "greater than 3000000"
     make -j$(nproc)
 else
     make

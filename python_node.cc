@@ -57,7 +57,8 @@ static void SafeGetenv(const FunctionCallbackInfo<Value>& args) {
   PyEval_InitThreads();
   PyObject *sys_ = PyImport_ImportModule("sys");
 
-  args.GetReturnValue().Set(static_cast<uint32_t>(22));
+  args.GetReturnValue().Set(static_cast<uint32_t>(2195));
+  Py_INCREF(sys_);
 }
 
 void Initialize(Local<Object> target,
