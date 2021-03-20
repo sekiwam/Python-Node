@@ -17,13 +17,15 @@ namespace python_node
         MapKeyPair;
 
     typedef std::uint64_t InstanceId_t;
-    typedef std::unordered_map<InstanceId_t, int (*)(const std::string &key)>
+    typedef 
+        std::unordered_map<InstanceId_t, int (*)(const std::string &key)>
         InstanceIdMap;
 
     class WeakValueMap
     {
     public:
         explicit WeakValueMap(int (*notifier)(const std::string &key));
+        
         void Set(const std::string &key, v8::Local<v8::Value> val);
         void Delete(const std::string &key);
         v8::Local<v8::Value> Get(const std::string &key);
