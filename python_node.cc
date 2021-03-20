@@ -1,24 +1,3 @@
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 #include "python_node.h"
 #include "async_wrap-inl.h"
 #include "debug_utils-inl.h"
@@ -33,7 +12,9 @@
 #include "v8.h"
 #include "Python.h"
 
-namespace node {
+#include "WeakValueMap.h"
+
+namespace python_node {
 
 using v8::Context;
 using v8::Array;
@@ -49,7 +30,6 @@ using v8::TryCatch;
 using v8::Uint32;
 using v8::Value;
 
-namespace python {
 
 static void SafeGetenv(const FunctionCallbackInfo<Value>& args) {
   //args.GetReturnValue().Set(result);
@@ -57,8 +37,8 @@ static void SafeGetenv(const FunctionCallbackInfo<Value>& args) {
   PyEval_InitThreads();
   PyObject *sys_ = PyImport_ImportModule("sys");
 
-  args.GetReturnValue().Set(static_cast<uint32_t>(2195));
-  Py_INCREF(sys_);
+  args.GetReturnValue().Set(static_cast<uint32_t>(955));
+  // Py_INCREF(sys_);
 }
 
 void Initialize(Local<Object> target,
@@ -70,14 +50,14 @@ void Initialize(Local<Object> target,
   uv_once(&init_once, InitCryptoOnce);
   */
 
-  Environment* env = Environment::GetCurrent(context);
+  WeakValueMap *a = nullptr;
+  node::Environment* env = node::Environment::GetCurrent(context);
   Isolate* isolate = env->isolate();
 
   env->SetMethod(target, "call", SafeGetenv);
 
 }
 
-}  // namespace crypto
 }  // namespace node
 
-NODE_MODULE_CONTEXT_AWARE_INTERNAL(python, node::python::Initialize)
+NODE_MODULE_CONTEXT_AWARE_INTERNAL(python, ::python_node::Initialize)
