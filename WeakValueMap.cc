@@ -114,14 +114,6 @@ namespace python_node
         this->map->erase(key);
     }
 
-/*
-
-    struct GetResult
-    {
-        v8::UniquePersistent<v8::Value> persistentValue;
-    };
-*/
-
     v8::Local<v8::Value> WeakValueMap::Get(const std::string &key)
     {
         v8::Isolate *isolate = v8::Isolate::GetCurrent();
