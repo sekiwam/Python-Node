@@ -10,7 +10,7 @@ index 63c8c50987..b884a0ff2e 100644
        'lib/cluster.js',
        'lib/diagnostics_channel.js',
        'lib/dgram.js',
-@@ -679,6 +680,10 @@
+@@ -679,6 +680,11 @@
          'src/udp_wrap.cc',
          'src/util.cc',
          'src/uv.cc',
