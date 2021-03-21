@@ -18,6 +18,7 @@ index 63c8c50987..b884a0ff2e 100644
 +            'src/python_node.h',
 +            'src/WeakValueMap.cc',
 +            'src/WeakValueMap.h',
++            'src/node_ref.h',
          # headers to make for a more pleasant IDE experience
          'src/aliased_buffer.h',
          'src/aliased_struct.h',
