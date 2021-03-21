@@ -93,10 +93,10 @@ namespace python_node
 
         //Delete from the map if the value to insert is undefined
         if (argValue->IsUndefined()) {
-            return WeakValueMap::Delete(key);
+            WeakValueMap::Delete(key);
+            return;
         }
 
-        //std::string key = std::string(*v8::String::Utf8Value(args[0]->ToString()));
         v8::UniquePersistent<v8::Value> value(isolate, argValue);
 
         WeakValue val(this->map, key, std::move(value));
