@@ -37,6 +37,10 @@ index 63c8c50987..b884a0ff2e 100644
 +            'src/bg_task.h',
 +            'src/call_later.cc',
 +            'src/call_later.h',
++            'src/JsObject.cc',
++            'src/JsObject.h',
++            'src/JsCallObject.cc',
++            'src/JsCallObject.h',
          # headers to make for a more pleasant IDE experience
          'src/aliased_buffer.h',
          'src/aliased_struct.h',
