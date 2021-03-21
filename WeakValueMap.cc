@@ -111,7 +111,6 @@ namespace python_node
 
     void WeakValueMap::Delete(const std::string &key)
     {
-        a
         this->map->erase(key);
     }
 
