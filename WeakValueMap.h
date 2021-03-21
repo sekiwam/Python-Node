@@ -16,7 +16,7 @@ namespace python_node
         std::string>
         MapKeyPair;
 
-    typedef std::uint64_t InstanceId_t;
+    typedef uint64_t InstanceId_t;
     typedef 
         std::unordered_map<InstanceId_t, int (*)(const std::string &key)>
         InstanceIdMap;

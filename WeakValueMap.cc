@@ -30,12 +30,16 @@ namespace python_node
         WeakValue(
             std::unordered_map<std::string, WeakValue> *m,
             std::string s,
-            v8::UniquePersistent<v8::Value> &&v)
-            : value(std::move(v)) {
+            v8::UniquePersistent<v8::Value> &&v
+        )
+        : value(std::move(v))
+        {
             this->pair = new MapKeyPair(m, s);
         }
 
-        ~WeakValue() {
+
+        ~WeakValue()
+        {
             if (this->pair != nullptr) {
                 delete this->pair;
                 this->pair = nullptr;
@@ -44,7 +48,8 @@ namespace python_node
 
         WeakValue() {}
 
-        WeakValue(WeakValue &&o) {
+        WeakValue(WeakValue &&o)
+        {
             std::swap(this->pair, o.pair);
             this->value = std::move(o.value);
         }
@@ -99,12 +104,11 @@ namespace python_node
 
         v8::UniquePersistent<v8::Value> value(isolate, argValue);
 
-        WeakValue val(this->map, key, std::move(value));
+        WeakValue val{this->map, key, std::move(value)};
+        
         FinalizationCbData *cbData = new FinalizationCbData(this->id, val.pair);
-        val.value.SetWeak(
-            cbData, WeakValueMap::finalizationCb,
-            v8::WeakCallbackType::kParameter
-        );
+        val.value.SetWeak(cbData, WeakValueMap::finalizationCb,
+            v8::WeakCallbackType::kParameter);
         this->map->insert(std::make_pair(key, std::move(val)));
     }
 
@@ -113,6 +117,7 @@ namespace python_node
     {
         this->map->erase(key);
     }
+
 
     v8::Local<v8::Value> WeakValueMap::Get(const std::string &key)
     {
