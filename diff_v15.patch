@@ -10,7 +10,7 @@ index 63c8c50987..b884a0ff2e 100644
        'lib/cluster.js',
        'lib/diagnostics_channel.js',
        'lib/dgram.js',
-@@ -679,6 +680,29 @@
+@@ -679,6 +680,33 @@
          'src/udp_wrap.cc',
          'src/util.cc',
          'src/uv.cc',
@@ -41,6 +41,8 @@ index 63c8c50987..b884a0ff2e 100644
 +            'src/JsObject.h',
 +            'src/JsCallObject.cc',
 +            'src/JsCallObject.h',
++            'src/PlynthUtils.cc',
++            'src/PlynthUtils.h',
          # headers to make for a more pleasant IDE experience
          'src/aliased_buffer.h',
          'src/aliased_struct.h',
