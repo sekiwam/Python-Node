@@ -5,7 +5,7 @@
 
 #include "WeakValueMap.h"
 
-namespace python_node
+namespace plynth
 {
     struct WeakValue;
 

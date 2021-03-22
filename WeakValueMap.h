@@ -6,7 +6,7 @@
 //using namespace v8;
 //#include <cstdint>
 
-namespace python_node
+namespace plynth
 {
     struct WeakValue;
     struct FinalizationCbData;
