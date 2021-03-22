@@ -66,6 +66,11 @@ jobs:
         run: |
             ./build_python.bat ${{ env.aversion }}
 
+      - name: Run on Windows - call .bat files
+        shell: bash
+        run:
+            ./nodejs/out/Release/node --version
+
 #      - name: Copy artifact
 #        shell: bash
 #        run: |
