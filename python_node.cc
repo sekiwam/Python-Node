@@ -45,7 +45,7 @@ namespace python_node
     void ak()
     {
         //startPythonBinding(nullptr, module_path.c_str(), func_name.c_str());
-        //python_node_register();
+        python_node_register();
     }
 
 
@@ -58,7 +58,7 @@ namespace python_node
         static uv_once_t init_once = UV_ONCE_INIT;
         uv_once(&init_once, InitCryptoOnce);
         */
-
+        ak();
         plynth::WeakValueMap *a = nullptr;
         node::Environment *env = node::Environment::GetCurrent(context);
         Isolate *isolate = env->isolate();
