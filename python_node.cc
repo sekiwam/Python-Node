@@ -33,9 +33,9 @@ namespace python_node
     static void SafeGetenv(const FunctionCallbackInfo<Value> &args)
     {
         //args.GetReturnValue().Set(result);
-        Py_InitializeEx(0);
-        PyEval_InitThreads();
-        PyObject *sys_ = PyImport_ImportModule("sys");
+        //Py_InitializeEx(0);
+        //PyEval_InitThreads();
+        //PyObject *sys_ = PyImport_ImportModule("sys");
 
         args.GetReturnValue().Set(static_cast<uint32_t>(955));
         // Py_INCREF(sys_);
