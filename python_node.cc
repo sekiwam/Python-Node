@@ -58,7 +58,7 @@ namespace python_node
         static uv_once_t init_once = UV_ONCE_INIT;
         uv_once(&init_once, InitCryptoOnce);
         */
-        ak();
+        //ak();
         plynth::WeakValueMap *a = nullptr;
         node::Environment *env = node::Environment::GetCurrent(context);
         Isolate *isolate = env->isolate();
