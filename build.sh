@@ -122,8 +122,10 @@ git config user.name "Your Name"
 
 ./configure
 mkdir out/Release
+mkdir out/Release/lib
 cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
+cp -R $PyPATH/lib/* out/Release/lib/
 
 memsize=`grep MemTotal /proc/meminfo | awk '{print $2}'`
 if [ $memsize -gt 3000000 ] ; then

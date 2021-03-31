@@ -998,6 +998,10 @@ void PyConverters::pre_register(v8::Local<v8::Object> rootJs)
 }
 
 
+void PyConverters::Clean()
+{
+	global_then_holder.Reset();
+}
 
 void PyConverters::Init(v8::Local<v8::Object> rootJs)
 {
@@ -1013,7 +1017,6 @@ void PyConverters::Init(v8::Local<v8::Object> rootJs)
 
 	auto str = String::NewFromUtf8(_isolate, "then", v8::NewStringType::kNormal).ToLocalChecked();
 	global_then_holder.Reset(_isolate, str);
-
 }
 
 

@@ -28,7 +28,9 @@ const {
     call
 } = internalBinding('python');
 
-module.exports = function() {return call(); }
+module.exports = {
+    call: function() { return call(); }
+}
 
 /*
 module.exports = {

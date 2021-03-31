@@ -59,3 +59,33 @@ elif platform_system == "Darwin":
 
 if libraries:
     put_libraries(libraries)
+
+
+
+
+
+embed_path_a = "EMBED_SCRIPT_A.py"
+embed_path_b = "EMBED_SCRIPT_B.py"
+target_path = "nodejs/src/python_bind.cc"
+#
+#[EMBED_PYTHON_SCRIPT_B]
+#[EMBED_PYTHON_SCRIPT_A]
+#
+with open(embed_path_a) as embed_file_a:
+    embed_str_a = embed_file_a.read()
+
+with open(embed_path_b) as embed_file_b:
+    embed_str_b = embed_file_b.read()
+
+with open(target_path, encoding='utf-8') as target_file:
+    target_str = target_file.read()
+    print("t")
+    print(len(target_str))
+    print("g")
+
+    dst = target_str.replace('#[EMBED_PYTHON_SCRIPT_B]', embed_str_b)
+    dst = dst.replace('#[EMBED_PYTHON_SCRIPT_A]', embed_str_a)
+
+if dst:
+    with open(target_path, mode='w', encoding='utf-8') as target_file:
+        target_file.write(dst)

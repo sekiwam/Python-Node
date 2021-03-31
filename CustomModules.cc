@@ -1014,3 +1014,9 @@ void CustomModuleManager::Init(v8::Local<v8::Object> rootJs)
 
 	PyConverters::Init(rootJs);
 }
+
+void CustomModuleManager::Clean()
+{
+	PyConverters::Clean();
+}
+

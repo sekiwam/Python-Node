@@ -36,6 +36,21 @@
 #endif
 
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#elif __linux__
+#include <sstream>
+#include <unistd.h>
+// linux
+#elif __unix__ // all unices not caught above
+constexpr OS_TYPE os_type = OS_TYPE::UNIX;
+// Unix
+#elif defined(_POSIX_VERSION)
+// POSIX
+#else
+#   error "Unknown compiler"
+#endif
+
+
 using namespace v8;
 
 
@@ -163,6 +178,7 @@ void _plynth_register() {
     auto *isolate = v8::Isolate::GetCurrent();
     auto context = isolate->GetCurrentContext();
     auto global = context->Global();
+
 
     //let scripts = document.getElementsByTagName("script");
     //		for (let i = 0; i < scripts.length; i++) {
@@ -306,9 +322,12 @@ void python_node_register() {
     auto context = isolate->GetCurrentContext();
     auto global = context->Global();
 
+
     // We should check more than one call for memory leak?
     auto jsfunc = [](const FunctionCallbackInfo<Value>& info) {
+
         _plynth_register();
+        
         if (_contendLoad.IsEmpty() == false) {
 
             auto *isolate = v8::Isolate::GetCurrent();
@@ -346,7 +365,6 @@ void python_node_register() {
     auto func = v8::Function::New(context, jsfunc, passData).ToLocalChecked();
 
     _contendLoad.Reset(isolate, func);
-
     {
         auto document_name = v8::String::NewFromUtf8(isolate, "document", v8::NewStringType::kNormal).ToLocalChecked();
         auto maybe_document = global->Get(context, document_name);
@@ -371,9 +389,9 @@ void python_node_register() {
                 // document is already ready to go
             //}
 
+
             if (already) {
                 _plynth_register();
-
             }
             else {
                 auto addEventListener_name = v8::String::NewFromUtf8(isolate, "addEventListener", v8::NewStringType::kNormal);
@@ -390,6 +408,7 @@ void python_node_register() {
                         .IsEmpty();
                 }
             }
+           
         }
     }
 }
@@ -550,8 +569,11 @@ void thread2_worker(void *userp)
 static char * Script1() { return NULL; }
 static char * Script2() { return NULL; }
 
+
 static void _start_python()
 {
+
+
 
     bool first_call = true;
     if (_pythread_state == nullptr) {
@@ -566,8 +588,9 @@ static void _start_python()
 
 
 
-#if defined(OS_LINUX)
+//#if defined(OS_LINUX)
         unsigned int bufferSize = 512;
+
         std::vector<char> buffer(bufferSize + 1);
         // Get the process ID.
         int pid = getpid();
@@ -579,6 +602,7 @@ static void _start_python()
         std::string link = oss.str();
 
         int count = readlink(link.c_str(), &buffer[0], bufferSize);
+
         if (count == -1) {
             //			throw std::runtime_error("Could not read symbolic link"); 
                         //printf("not found AA");
@@ -591,14 +615,15 @@ static void _start_python()
             //printf("str1 = %s", ws.c_str());
             //fflush(stdout);
 
+
             const auto lastSlashPos = ws.find_last_of('/'); // get a dir of execution file
             if (lastSlashPos != std::string::npos) {
                 ws = ws.substr(0, lastSlashPos + 1);
 
                 std::wstring base_path = std::wstring(ws.begin(), ws.end());
-                std::wstring s = base_path + L"lib/python3.7:" + base_path + L"lib/python3.7/lib-dynload:" + base_path + L"lib/python3.7/site-packages";
+                std::wstring s = base_path + L"lib/python3.8:" + base_path + L"lib/python3.8/lib-dynload:" + base_path + L"lib/python3.8/site-packages";
 
-                std::wstring shome = base_path + L"lib/python3.7";
+                std::wstring shome = base_path + L"lib/python3.8";
                 Py_SetPythonHome((wchar_t *)shome.c_str());
 
                 Py_SetPath(s.c_str());
@@ -617,7 +642,7 @@ static void _start_python()
             */
         }
 
-#endif
+//#endif
 
 #if defined(OS_MACOSX)
 
@@ -715,13 +740,16 @@ static void _start_python()
         if (_exec_path.empty()) {
             PyVars::exec_path = PyUnicode_FromString("");
 
-
             auto v8_dirname = v8::String::NewFromUtf8(_isolate, "process", v8::NewStringType::kNormal).ToLocalChecked();
             auto process = localGlobal.As<Object>()->Get(context, v8_dirname);
+            
+
             if (!process.IsEmpty() && process.ToLocalChecked()->IsObject()) {
 
                 auto execPathStr = v8::String::NewFromUtf8(_isolate, "execPath", v8::NewStringType::kNormal);
+
                 auto execPath = process.ToLocalChecked().As<Object>()->Get(context, execPathStr.ToLocalChecked());
+
                 if (!execPath.IsEmpty()) {
                     v8::String::Utf8Value utf_str(_isolate, execPath.ToLocalChecked());// jsobj->ToString());
 
@@ -729,11 +757,11 @@ static void _start_python()
                     PyVars::exec_path = PyUnicode_FromString(*utf_str);
                 }
             }
-
         }
         else {
             PyVars::exec_path = PyUnicode_FromString(_exec_path.c_str());
         }
+
 
         {
             // add current working directory
@@ -805,6 +833,7 @@ static void _start_python()
         PyVars::CustomScriptDict = PyDict_New();
         PyVars::pyfunction_dict = PyDict_New();
         PyVars::pyobj_dict = PyDict_New();
+        
 
         CustomModuleManager::Init(localGlobal);
 
@@ -843,16 +872,24 @@ static void _start_python()
 
         // PyObject *globals = PyEval_GetGlobals(); // we won't use it 
 
-        const auto python_lib_load_script_b = (std::string)(Script2());
-        //const auto python_lib_load_script_b = (std::string)(R"(
-//#[EMBED_PYTHON_SCRIPT_B]
-//)");
+        //const auto python_lib_load_script_b = (std::string)(Script2());
+        const auto python_lib_load_script_b = (std::string)(R"(
+#[EMBED_PYTHON_SCRIPT_B]
+)");
 
-        const auto python_lib_load_script = python_lib_load_script_b + (std::string)(Script1());
+        const auto python_lib_load_script_a = (std::string)(R"(
+#[EMBED_PYTHON_SCRIPT_A]
+)");
+
+        const auto python_lib_load_script = python_lib_load_script_b + 
+            python_lib_load_script_a;
+
+
 
         PyObject *__main__ = PyImport_ImportModule("__main__");
         auto *globals = PyObject_GetAttrString(__main__, "__dict__");
         Py_DECREF(__main__);
+
 
         if (const PyObject *result = PyRun_String(python_lib_load_script.c_str(), Py_file_input, globals, PyVars::CustomScriptDict)) {
             Py_DECREF(result);
@@ -860,6 +897,8 @@ static void _start_python()
 
 
         pyErrorLogConsole();
+        
+
 
 
         auto *JsPromiseWrapper = PyDict_GetItemString(PyVars::CustomScriptDict, "JsPromiseWrapper");
@@ -885,6 +924,11 @@ static void _start_python()
         auto *js_class = PyDict_GetItemString(PyVars::CustomScriptDict, "js_class");
 
         auto *js_undefined = PyDict_GetItemString(PyVars::CustomScriptDict, "undefined_obj");
+
+
+
+
+
 
 
         //const auto JsUvEventLoop = PyDict_GetItemString(PyVars::CustomScriptDict, "JsUvEventLoop");
@@ -945,12 +989,16 @@ static void _start_python()
 
     _pythread_state = PyThreadState_Get();
 
+    printf("ACB\n");
 
-    if (_python_module_name.empty() == false) {
+
+_python_module_name = "sys";
+_func_name = "getcheckinterval";
+    //if (_python_module_name.empty() == false) {
 
         std::string call_func_user_script = "";
 
-        if (_func_name.empty() == false) {
+        //if (_func_name.empty() == false) {
             call_func_user_script = (std::string)(R"(
 message = )") + std::string(_python_module_name) + "." + std::string(_func_name) + std::string("()") +
 (std::string)(R"(
@@ -970,7 +1018,7 @@ if isinstance(message, types.CoroutineType):
 
 )")
 ;
-        }
+        //}
 
         const auto python_start_user_script = (std::string)(R"(
 import os
@@ -984,6 +1032,8 @@ import multiprocessing as mp
 
 platform_system = platform.system()
 
+print("jifoew")
+jg.console.info("230")
 try:
 	sys.modules['__plynth__'] = plynth
 	if platform_system == "Windows":
@@ -1020,7 +1070,9 @@ _custom_loop.run_forever()
 
         auto *localDict = PyDict_New();
         PyDict_SetItemString(localDict, "_custom_loop", PyVars::JsUvEventLoop);
-        PyObject *result2 = PyRun_String(python_start_user_script.c_str(), Py_file_input, globals, localDict);
+
+        PyObject *result2 = PyRun_String(python_start_user_script.c_str(), 
+        Py_file_input, globals, localDict);
 
         pyErrorLogConsole();
 
@@ -1029,9 +1081,35 @@ _custom_loop.run_forever()
         if (result2 != NULL) {
             Py_DECREF(result2);
         }
-    }
+    //}
 }
 
+void my_cleanup(void* arg)
+{
+    //delete my_object_ptr; //call object dtor, or other stuff that needs to be cleaned up here
+    _global_obj.Reset();//_isolate, global_obj);
+    _contendLoad.Reset( );
+
+    CustomModuleManager::Clean();
+}
+
+void start()
+{
+    _isolate = v8::Isolate::GetCurrent();
+
+     auto context = _isolate->GetCurrentContext(); // no longer crashes
+     auto global_obj = context->Global();
+    _global_obj.Reset(_isolate, global_obj);
+
+    JsVars::getInstance()->Init(_isolate, global_obj);
+
+    python_node_register();
+
+    //node::Environment *env = node::Environment::GetCurrent(context);
+    node::AtExit(my_cleanup, nullptr);
+    
+    _start_python();
+}
 
 
 
