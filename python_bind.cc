@@ -588,6 +588,9 @@ static void _start_python()
 
 
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#else
+
 //#if defined(OS_LINUX)
         unsigned int bufferSize = 512;
 
@@ -643,6 +646,7 @@ static void _start_python()
         }
 
 //#endif
+#endif
 
 #if defined(OS_MACOSX)
 
@@ -1099,6 +1103,7 @@ void start()
 
      auto context = _isolate->GetCurrentContext(); // no longer crashes
      auto global_obj = context->Global();
+    
     _global_obj.Reset(_isolate, global_obj);
 
     JsVars::getInstance()->Init(_isolate, global_obj);

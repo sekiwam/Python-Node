@@ -10,6 +10,11 @@
         //"nodejs": true,
     },
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "*.idl": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "cstdlib": "cpp",
+        "regex": "cpp"
     }
 }

@@ -52,11 +52,7 @@ namespace python_node
                     Local<Context> context,
                     void *priv)
     {
-        /*
-        static uv_once_t init_once = UV_ONCE_INIT;
-        uv_once(&init_once, InitCryptoOnce);
-        */
-        //init_pythonNode();
+        init_pythonNode();
 
         plynth::WeakValueMap *a = nullptr;
         node::Environment *env = node::Environment::GetCurrent(context);
