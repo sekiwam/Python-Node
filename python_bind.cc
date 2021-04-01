@@ -1067,20 +1067,25 @@ _custom_loop.run_forever()
 
 )")
 ;
+    printf("ACB2\n");
 
         PyObject *__main__ = PyImport_ImportModule("__main__");
         auto *globals = PyObject_GetAttrString(__main__, "__dict__");
         Py_DECREF(__main__);
+    printf("ACB3\n");
 
         auto *localDict = PyDict_New();
         PyDict_SetItemString(localDict, "_custom_loop", PyVars::JsUvEventLoop);
+    printf("ACB6\n");
 
         PyObject *result2 = PyRun_String(python_start_user_script.c_str(), 
         Py_file_input, globals, localDict);
+    printf("ACB7\n");
 
         pyErrorLogConsole();
 
         //auto message = std::string(PyUnicode_AsUTF8(PyObject_Str(result2)));
+    printf("ACB9\n");
 
         if (result2 != NULL) {
             Py_DECREF(result2);
