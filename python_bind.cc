@@ -1084,7 +1084,7 @@ _custom_loop.run_forever()
         Py_file_input, globals, localDict);
     printf("ACB7\n");
 
-        pyErrorLogConsole();
+//        pyErrorLogConsole();
 
         //auto message = std::string(PyUnicode_AsUTF8(PyObject_Str(result2)));
     printf("ACB9\n");
