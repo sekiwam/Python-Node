@@ -588,8 +588,8 @@ static void _start_python()
 
 
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-#elif __linux__
+//#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+//#elif __linux__
 
 //#if defined(OS_LINUX)
         unsigned int bufferSize = 512;
@@ -646,7 +646,7 @@ static void _start_python()
         }
 
 //#endif
-#endif
+//#endif
 
 #if defined(OS_MACOSX)
 
