@@ -1025,6 +1025,7 @@ if isinstance(message, types.CoroutineType):
         //}
 
         const auto python_start_user_script = (std::string)(R"(
+print("wow")
 import os
 import platform
 import sys
