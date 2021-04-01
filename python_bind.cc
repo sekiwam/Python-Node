@@ -1031,11 +1031,12 @@ import sys
 
 import plynth
 from plynth import js as jg, JsError
-sys.exit()
 
 import multiprocessing as mp
 
 platform_system = platform.system()
+
+sys.exit()
 
 print("jifoew")
 jg.console.info("230")
