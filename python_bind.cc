@@ -1025,10 +1025,10 @@ if isinstance(message, types.CoroutineType):
         //}
 
         const auto python_start_user_script = (std::string)(R"(
-return
 import os
 import platform
 import sys
+sys.exit()
 
 import plynth
 from plynth import js as jg, JsError
