@@ -1025,7 +1025,7 @@ if isinstance(message, types.CoroutineType):
         //}
 
         const auto python_start_user_script = (std::string)(R"(
-print("wow2")
+return
 import os
 import platform
 import sys
@@ -1079,8 +1079,8 @@ _custom_loop.run_forever()
         PyDict_SetItemString(localDict, "_custom_loop", PyVars::JsUvEventLoop);
     printf("ACB6\n");
 
-        //PyObject *result2 = PyRun_String(python_start_user_script.c_str(), 
-        //Py_file_input, globals, localDict);
+        PyObject *result2 = PyRun_String(python_start_user_script.c_str(), 
+        Py_file_input, globals, localDict);
     printf("ACB7\n");
 
         pyErrorLogConsole();
@@ -1088,9 +1088,9 @@ _custom_loop.run_forever()
         //auto message = std::string(PyUnicode_AsUTF8(PyObject_Str(result2)));
     printf("ACB9\n");
 
-        //if (result2 != NULL) {
-            //Py_DECREF(result2);
-        //}
+        if (result2 != NULL) {
+            Py_DECREF(result2);
+        }
     //}
 }
 
