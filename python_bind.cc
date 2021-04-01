@@ -1036,7 +1036,7 @@ import multiprocessing as mp
 
 platform_system = platform.system()
 
-sys.exit()
+#sys.exit()
 
 print("jifoew")
 jg.console.info("230")
