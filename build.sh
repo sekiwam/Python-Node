@@ -137,7 +137,7 @@ cp -R $PyPATH/lib/* out/Debug/lib/
 memsize=`grep MemTotal /proc/meminfo | awk '{print $2}'`
 if [ $memsize -gt 3000000 ] ; then
     echo "greater than 3000000"
-    make -j$(nproc)
+    make # -j$(nproc)
 else
     make
 fi
