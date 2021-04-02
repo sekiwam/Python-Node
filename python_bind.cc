@@ -1028,6 +1028,7 @@ if isinstance(message, types.CoroutineType):
 import os
 import platform
 import sys
+sys.exit()
 
 import plynth
 from plynth import js as jg, JsError
@@ -1036,7 +1037,6 @@ import multiprocessing as mp
 
 platform_system = platform.system()
 
-sys.exit()
 
 print("jifoew")
 
