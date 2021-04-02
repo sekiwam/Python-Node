@@ -127,6 +127,13 @@ cp -R $PyPATH/lib/* out/
 cp -R $PyPATH/lib/* out/Release/
 cp -R $PyPATH/lib/* out/Release/lib/
 
+mkdir out/Debug
+mkdir out/Debug/lib
+cp -R $PyPATH/lib/* out/
+cp -R $PyPATH/lib/* out/Debug/
+cp -R $PyPATH/lib/* out/Debug/lib/
+
+
 memsize=`grep MemTotal /proc/meminfo | awk '{print $2}'`
 if [ $memsize -gt 3000000 ] ; then
     echo "greater than 3000000"
