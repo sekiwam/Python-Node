@@ -120,7 +120,7 @@ git config user.name "Your Name"
 #git add .
 #git commit -a -m 'temp' 
 
-./configure
+./configure  --debug
 mkdir out/Release
 mkdir out/Release/lib
 cp -R $PyPATH/lib/* out/

@@ -1028,7 +1028,6 @@ if isinstance(message, types.CoroutineType):
 import os
 import platform
 import sys
-sys.exit()
 
 import plynth
 from plynth import js as jg, JsError
@@ -1040,7 +1039,7 @@ platform_system = platform.system()
 
 print("jifoew")
 
-jg.console.info("230")
+# jg.console.info("230")
 
 try:
 	sys.modules['__plynth__'] = plynth
