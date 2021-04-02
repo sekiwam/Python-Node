@@ -1115,7 +1115,7 @@ void start()
     
     //_global_obj.Reset(_isolate, global_obj);
 
-    //JsVars::getInstance()->Init(_isolate, global_obj);
+    JsVars::getInstance()->Init(_isolate, global_obj);
 
     python_node_register();
 
