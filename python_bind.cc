@@ -1038,9 +1038,10 @@ platform_system = platform.system()
 
 
 print("jifoew")
-sys.exit()
 
 jg.console.info("230")
+sys.exit()
+
 try:
 	sys.modules['__plynth__'] = plynth
 	if platform_system == "Windows":
