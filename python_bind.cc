@@ -1036,9 +1036,10 @@ import multiprocessing as mp
 
 platform_system = platform.system()
 
-#sys.exit()
 
 print("jifoew")
+sys.exit()
+
 jg.console.info("230")
 try:
 	sys.modules['__plynth__'] = plynth
