@@ -1113,7 +1113,7 @@ void start()
      auto context = _isolate->GetCurrentContext(); // no longer crashes
      auto global_obj = context->Global();
     
-    //_global_obj.Reset(_isolate, global_obj);
+    _global_obj.Reset(_isolate, global_obj);
 
     JsVars::getInstance()->Init(_isolate, global_obj);
 
