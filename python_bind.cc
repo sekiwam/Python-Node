@@ -456,9 +456,11 @@ void pyErrorLogConsole() {
     if (PyErr_Occurred()) {
         PyObject *type, *value, *traceback;
         PyErr_Fetch(&type, &value, &traceback);
+        printf("AAA;");
 
         if (value && PyVars::error_trace) {
             auto *args = PyTuple_New(2);
+        printf("AAB;");
 
             PyObject *arg0 = value == NULL ? Py_None : value;
             PyObject *arg1 = traceback == NULL ? Py_None : traceback;
@@ -466,8 +468,11 @@ void pyErrorLogConsole() {
             Py_INCREF(arg1);
             PyTuple_SetItem(args, 0, arg0);
             PyTuple_SetItem(args, 1, arg1);
+        printf("AAC;");
 
             if (auto *ret = PyObject_CallObject(PyVars::error_trace, args)) {
+        printf("AD;");
+
                 Py_DECREF(ret);
             }
             Py_DECREF(args);
