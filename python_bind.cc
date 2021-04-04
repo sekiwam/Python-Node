@@ -1072,7 +1072,7 @@ _custom_loop.run_forever()
 )")
 ;
     printf("ACB2\n");
-    
+
 
         PyObject *__main__ = PyImport_ImportModule("__main__");
         auto *globals = PyObject_GetAttrString(__main__, "__dict__");
@@ -1087,7 +1087,7 @@ _custom_loop.run_forever()
         Py_file_input, globals, localDict);
     printf("ACB7\n");
 
-//        pyErrorLogConsole();
+        pyErrorLogConsole();
 
         //auto message = std::string(PyUnicode_AsUTF8(PyObject_Str(result2)));
     printf("ACB9\n");
