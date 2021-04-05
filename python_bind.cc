@@ -1033,7 +1033,7 @@ if isinstance(message, types.CoroutineType):
 import os
 import platform
 import sys
-#sys.exit()
+sys.exit()
 
 import plynth
 from plynth import js as jg, JsError
