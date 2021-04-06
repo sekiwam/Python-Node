@@ -23,7 +23,7 @@ def error_trace(val, val_traceback):
     if val_traceback:
         tb = traceback.format_tb(val_traceback)
         if tb and len(tb) > 0:
-            js.console#.error(str(val) +": " + tb[len(tb)-1])
+            js.console.error#(str(val) +": " + tb[len(tb)-1])
 
 def print_line_number(fut):
     def __print_line_number(fut):
