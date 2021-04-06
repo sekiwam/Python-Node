@@ -168,6 +168,8 @@ static std::unique_ptr<UiBox> _JsCallObject_tp_call(PyObject *self, PyObject *ar
 	const auto arg_len = static_cast<uint32_t>(PyTuple_Size(args));
 
 	v8::Local<v8::Value> call_js_value;
+
+    /*
 	{
 		// converts actual argments in PyFunction to v8::Value
 
@@ -203,7 +205,7 @@ static std::unique_ptr<UiBox> _JsCallObject_tp_call(PyObject *self, PyObject *ar
 		DCHECK(!exception.IsEmpty());
 		return JsCallFromBackground::treat_exception(exception, is_main_thread);
 	}
-
+*/
 	return std::unique_ptr<UiBox>(new UiBox(JsValue_to_PyObject(call_js_value), false));
 }
 
