@@ -159,6 +159,7 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 	auto context = _isolate->GetCurrentContext();
 
 
+    printf("{1}");
 	// Can we support for keeping reference on primitive values?
 	if (local_value->IsString()) {// || local_value->IsStringObject()) {
 		v8::String::Utf8Value utf_str(_isolate, local_value);
@@ -188,6 +189,7 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		return py_long;
 	}
 
+    printf("{2}");
 
 	if (local_value->IsNumber()) {// || local_value->IsNumberObject()) {
 		Maybe<double> numv = local_value->NumberValue(context);
@@ -221,6 +223,7 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		return (PyObject*)jsCallObject;
 	}
 
+    printf("{3}");
 
 	//* converts JsPromise to py.future which has __wait__*/
 	bool promiseLike = local_value->IsPromise();
@@ -285,11 +288,13 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 
 	}
 
+    printf("{4}");
 
 
 	auto *jsObject = (JsObject*)JsObjectReg::getInstance()->JsObject_new(NULL, NULL);
 	jsObject->_object.Reset(_isolate, local_value.As<Object>());
 	//jsObject->_object.Reset(_isolate, local_value->ToObject());
+    printf("{5}");
 
 	return (PyObject*)jsObject;
 
