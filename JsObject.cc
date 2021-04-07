@@ -136,7 +136,7 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 	}
 
 	if (!localValue.IsEmpty()) {
-        printf("[3]");
+        printf("[3: %s]", name);
 
 		return std::unique_ptr<UiBox>(new UiBox(JsValue_to_PyObject(targetLocalObject, name, localValue.ToLocalChecked()), false));
 	}
