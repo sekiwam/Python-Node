@@ -227,7 +227,7 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
     printf("{4445}");
 
 		jsCallObject->_function.Reset(_isolate, local_value.As<Function>());
-    printf("{456}");
+    printf("{456 %s}", access_name);
 
 		jsCallObject->access_name = std::string(access_name);
     printf("{33}");
