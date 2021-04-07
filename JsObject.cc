@@ -67,31 +67,18 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 	auto v8name = String::NewFromUtf8(_isolate, name, v8::NewStringType::kNormal).ToLocalChecked();
 	auto context = _isolate->GetCurrentContext();
 
-    printf("[0]");
-
 
 	auto localValue = targetLocalObject->Get(context, v8name);
 
-    printf("[1]");
-
-    printf("1;");
 
 
 	if (localValue.IsEmpty() || localValue.ToLocalChecked()->IsUndefined()) {
-    printf("11;");
-
 		if (targetLocalObject == JsVars::getInstance()->getJsGlobal()) {
-    printf("44;");
-
 			const auto top_level_var = JsVars::getInstance()->_js_toplevel_var_getter.Get(_isolate);
-    printf("55;");
-
 			if (top_level_var.IsEmpty() == false) {
 				auto func = top_level_var.As<Function>();
 				if (func.IsEmpty() == false) {
 					v8::Local<v8::Value> stack_js_arg_array[1];
-
-    printf("2;");
 
 					stack_js_arg_array[0] = String::NewFromUtf8(_isolate, name, v8::NewStringType::kNormal).ToLocalChecked();
 
@@ -101,7 +88,6 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 					if (result.IsEmpty() == false) {
 						const auto jsvalue = result.ToLocalChecked().As<v8::Object>();
 
-    printf("3;");
 
 						/*
 						if (trycatch.HasCaught()) {
@@ -118,16 +104,12 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 
 							return std::unique_ptr<UiBox>(new UiBox(JsValue_to_PyObject(targetLocalObject2, name, jsvalue), false));
 						}
-    printf("4;");
-
 					}
 
 				}
 			}
 		}
 	}
-
-    printf("[2]");
 
 	if (trycatch.HasCaught()) {
 		v8::Local<v8::Value> exception = trycatch.Exception();
@@ -136,16 +118,8 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 	}
 
 	if (!localValue.IsEmpty()) {
-
-        auto *pyobj = JsValue_to_PyObject(targetLocalObject, name, localValue.ToLocalChecked());
-        printf("[3: %s]", name);
-
-        auto *uibox = new UiBox(pyobj, false);
-        
-
-		return std::unique_ptr<UiBox>(uibox);
+		return std::unique_ptr<UiBox>(new UiBox(JsValue_to_PyObject(targetLocalObject, name, localValue.ToLocalChecked()), false));
 	}
-
 
 	return std::unique_ptr<UiBox>(new UiBox((PyObject*)NULL, false));
 }
@@ -182,10 +156,7 @@ private:
 static PyObject *JsObject_getattr(JsObject *obj, char *name)
 {
 	if (CustomModuleManager::inMainThread()) {
-        printf("[begin]");
-
 		auto box = _JsObject_getattr(obj, reinterpret_cast<const char*>(name), true);
-        printf("[5]");
 		return box->get_pyobject();
 	}
 

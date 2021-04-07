@@ -159,7 +159,6 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 	auto context = _isolate->GetCurrentContext();
 
 
-    printf("{1}");
 	// Can we support for keeping reference on primitive values?
 	if (local_value->IsString()) {// || local_value->IsStringObject()) {
 		v8::String::Utf8Value utf_str(_isolate, local_value);
@@ -189,7 +188,6 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		return py_long;
 	}
 
-    printf("{2}");
 
 	if (local_value->IsNumber()) {// || local_value->IsNumberObject()) {
 		Maybe<double> numv = local_value->NumberValue(context);
@@ -198,8 +196,6 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 			return pyfloat;
 		}
 	}
-
-
 
 	if (local_value->IsNullOrUndefined()) {
 		Py_INCREF(Py_None);
@@ -215,22 +211,12 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 
 		return (PyObject*)jsCallObject;
 	}
-    printf("{55}");
 
 	if (local_value->IsFunction()) {
-    printf("{44}");
-
 		auto *jsCallObject = (JsCallObject*)JsCallObjectReg::JsCallObject_New(NULL, NULL);
-    printf("{444}");
-
 		jsCallObject->_owner.Reset(_isolate, ownerValue.As<Object>());
-    printf("{4445}");
-
 		jsCallObject->_function.Reset(_isolate, local_value.As<Function>());
-    printf("{456 %s}", access_name);
-
-		jsCallObject->access_name.assign(access_name);
-    printf("{33}");
+		jsCallObject->access_name = std::string(access_name);
 
 		return (PyObject*)jsCallObject;
 	}
@@ -299,13 +285,11 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 
 	}
 
-    printf("{4}");
 
 
 	auto *jsObject = (JsObject*)JsObjectReg::getInstance()->JsObject_new(NULL, NULL);
 	jsObject->_object.Reset(_isolate, local_value.As<Object>());
 	//jsObject->_object.Reset(_isolate, local_value->ToObject());
-    printf("{5}");
 
 	return (PyObject*)jsObject;
 
