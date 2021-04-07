@@ -207,7 +207,8 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		auto *jsCallObject = (JsCallObject*)JsCallObjectReg::JsCallObject_New(NULL, NULL);
 		jsCallObject->_owner.Reset(_isolate, ownerValue.As<Object>());
 		jsCallObject->_function.Reset(_isolate, local_value.As<Function>());
-		jsCallObject->access_name = std::string(access_name);
+		//jsCallObject->access_name = std::string(access_name);
+		jsCallObject->access_name.assign(access_name);
 
 		return (PyObject*)jsCallObject;
 	}

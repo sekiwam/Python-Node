@@ -339,7 +339,8 @@ bool CustomModuleManager::consoleInfo(const std::string &str)
 		auto state_ = PyGILState_Ensure();
 
 		auto *item = new ConsoleInfoAsyncData();
-		item->str = std::string(str);
+		//item->str = std::string(str);
+		item->str.assign(str);
 
 		JsCallFromBackground::call_js_from_background(item);
 

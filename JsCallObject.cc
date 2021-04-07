@@ -465,7 +465,8 @@ static PyObject *JsCall_getattr(JsCallObject *obj, char *name)
 
 	auto *item = new JsCallObject_getattr_Item();
 	item->jsobj = obj;
-	item->name = std::string(name);
+	//item->name = std::string(name);
+	item->name.assign(name);
 
 	return JsCallFromBackground::call_js_from_background(item);
 }
