@@ -199,10 +199,14 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		}
 	}
 
+    printf("{33}");
+
+
 	if (local_value->IsNullOrUndefined()) {
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
+    printf("{44}");
 
 
 	if (local_value->IsProxy()) {
@@ -213,6 +217,7 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 
 		return (PyObject*)jsCallObject;
 	}
+    printf("{55}");
 
 	if (local_value->IsFunction()) {
 		auto *jsCallObject = (JsCallObject*)JsCallObjectReg::JsCallObject_New(NULL, NULL);
@@ -223,7 +228,6 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		return (PyObject*)jsCallObject;
 	}
 
-    printf("{3}");
 
 	//* converts JsPromise to py.future which has __wait__*/
 	bool promiseLike = local_value->IsPromise();
