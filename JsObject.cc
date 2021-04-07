@@ -127,6 +127,8 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 		}
 	}
 
+    printf("[2]");
+
 	if (trycatch.HasCaught()) {
 		v8::Local<v8::Value> exception = trycatch.Exception();
 		DCHECK(!exception.IsEmpty());
@@ -136,6 +138,8 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 	if (!localValue.IsEmpty()) {
 		return std::unique_ptr<UiBox>(new UiBox(JsValue_to_PyObject(targetLocalObject, name, localValue.ToLocalChecked()), false));
 	}
+
+    printf("[3]");
 
 	return std::unique_ptr<UiBox>(new UiBox((PyObject*)NULL, false));
 }
