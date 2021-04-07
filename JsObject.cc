@@ -74,8 +74,14 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 
 
 	if (localValue.IsEmpty() || localValue.ToLocalChecked()->IsUndefined()) {
+    printf("11;");
+
 		if (targetLocalObject == JsVars::getInstance()->getJsGlobal()) {
+    printf("44;");
+
 			const auto top_level_var = JsVars::getInstance()->_js_toplevel_var_getter.Get(_isolate);
+    printf("55;");
+
 			if (top_level_var.IsEmpty() == false) {
 				auto func = top_level_var.As<Function>();
 				if (func.IsEmpty() == false) {
