@@ -178,6 +178,7 @@ static PyObject *JsObject_getattr(JsObject *obj, char *name)
 {
 	if (CustomModuleManager::inMainThread()) {
 		auto box = _JsObject_getattr(obj, reinterpret_cast<const char*>(name), true);
+        printf("[5]");
 		return box->get_pyobject();
 	}
 
