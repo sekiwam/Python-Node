@@ -199,14 +199,12 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
 		}
 	}
 
-    printf("{33}");
 
 
 	if (local_value->IsNullOrUndefined()) {
 		Py_INCREF(Py_None);
 		return Py_None;
 	}
-    printf("{44}");
 
 
 	if (local_value->IsProxy()) {
@@ -220,10 +218,19 @@ PyObject* JsValue_to_PyObject(v8::Local<v8::Value> ownerValue, const char *acces
     printf("{55}");
 
 	if (local_value->IsFunction()) {
+    printf("{44}");
+
 		auto *jsCallObject = (JsCallObject*)JsCallObjectReg::JsCallObject_New(NULL, NULL);
+    printf("{444}");
+
 		jsCallObject->_owner.Reset(_isolate, ownerValue.As<Object>());
+    printf("{4445}");
+
 		jsCallObject->_function.Reset(_isolate, local_value.As<Function>());
+    printf("{456}");
+
 		jsCallObject->access_name = std::string(access_name);
+    printf("{33}");
 
 		return (PyObject*)jsCallObject;
 	}
