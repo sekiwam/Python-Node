@@ -67,8 +67,12 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 	auto v8name = String::NewFromUtf8(_isolate, name, v8::NewStringType::kNormal).ToLocalChecked();
 	auto context = _isolate->GetCurrentContext();
 
+    printf("[0]");
+
 
 	auto localValue = targetLocalObject->Get(context, v8name);
+
+    printf("[1]");
 
     printf("1;");
 
