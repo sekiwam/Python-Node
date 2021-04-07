@@ -168,46 +168,33 @@ static std::unique_ptr<UiBox> _JsCallObject_tp_call(PyObject *self, PyObject *ar
 	const auto arg_len = static_cast<uint32_t>(PyTuple_Size(args));
 
 	v8::Local<v8::Value> call_js_value;
-
 	{
-        printf(";1;");
 		// converts actual argments in PyFunction to v8::Value
+
 		if (arg_len < MAX_JS_ARGS_LEN) { // stack version
 			static v8::Local<v8::Value> stack_js_arg_array[MAX_JS_ARGS_LEN];
-
-        printf(";2;");
 
 			for (uint32_t i = 0; i < arg_len; i++) {
 				stack_js_arg_array[i] = PyObject_to_JsValue(PyTuple_GetItem(args, i)); // Return value : Borrowed reference.
 			}
 			auto context = _isolate->GetCurrentContext();
 			auto result = localValue->Call(context, ownerValue, arg_len, stack_js_arg_array);
-            printf(";5;");
-
 			if (result.IsEmpty() == false) {
 				call_js_value = result.ToLocalChecked();
 			}
 		}
 		else { // heap version
-
-            printf(";3;");
-
 			auto *js_arg_array = new v8::Local<v8::Value>[arg_len];
 			for (uint32_t i = 0; i < arg_len; i++) {
 				js_arg_array[i] = PyObject_to_JsValue(PyTuple_GetItem(args, i));
 			}
 			auto context = _isolate->GetCurrentContext();
-			auto result = localValue->Call(context, ownerValue, arg_len, 
-            js_arg_array);
-            printf(";4;");
-
+			auto result = localValue->Call(context, ownerValue, arg_len, js_arg_array);
 			if (!result.IsEmpty()) {
 				call_js_value = result.ToLocalChecked();
 			}
 			delete[] js_arg_array;
 		}
-        printf(";9;");
-
 	}
 
 

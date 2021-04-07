@@ -70,6 +70,7 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 
 	auto localValue = targetLocalObject->Get(context, v8name);
 
+    printf("1;");
 
 
 	if (localValue.IsEmpty() || localValue.ToLocalChecked()->IsUndefined()) {
@@ -80,6 +81,8 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 				if (func.IsEmpty() == false) {
 					v8::Local<v8::Value> stack_js_arg_array[1];
 
+    printf("2;");
+
 					stack_js_arg_array[0] = String::NewFromUtf8(_isolate, name, v8::NewStringType::kNormal).ToLocalChecked();
 
 					auto context = _isolate->GetCurrentContext();
@@ -88,6 +91,7 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 					if (result.IsEmpty() == false) {
 						const auto jsvalue = result.ToLocalChecked().As<v8::Object>();
 
+    printf("3;");
 
 						/*
 						if (trycatch.HasCaught()) {
@@ -104,6 +108,8 @@ static std::unique_ptr<UiBox> _JsObject_getattr(JsObject *obj, const char *name,
 
 							return std::unique_ptr<UiBox>(new UiBox(JsValue_to_PyObject(targetLocalObject2, name, jsvalue), false));
 						}
+    printf("4;");
+
 					}
 
 				}
