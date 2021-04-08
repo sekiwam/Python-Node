@@ -38,7 +38,7 @@ namespace python_node
         //PyObject *sys_ = PyImport_ImportModule("sys");
 
         args.GetReturnValue().Set(static_cast<uint32_t>(955));
-        printf("@[%d]", args.kArgsLength);
+        printf("@[%d]", args.Length());
         // Py_INCREF(sys_);
     }
 
