@@ -30,7 +30,7 @@ using v8::Value;
 
 namespace python_node
 {
-    static void SafeGetenv(const FunctionCallbackInfo<Value> &args)
+    static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
     {
         //args.GetReturnValue().Set(result);
         //Py_InitializeEx(0);
@@ -59,7 +59,7 @@ namespace python_node
         node::Environment *env = node::Environment::GetCurrent(context);
         Isolate *isolate = env->isolate();
 
-        env->SetMethod(target, "call", SafeGetenv);
+        env->SetMethod(target, "call", StartPythonScript);
     }
 
 } // namespace node
