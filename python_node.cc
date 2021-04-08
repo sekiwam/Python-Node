@@ -39,6 +39,13 @@ namespace python_node
 
         args.GetReturnValue().Set(static_cast<uint32_t>(955));
         printf("@[%d]", args.Length());
+        auto arg2 = args[0].As<String>(); // python func name
+
+		v8::String::Utf8Value utf_str_2(args.GetIsolate(), arg2);// jsobj->ToString());
+
+		auto pythonPath = std::string(*utf_str_2);
+        printf("@[%s]", pythonPath.c_str());
+
         // Py_INCREF(sys_);
     }
 
