@@ -29,7 +29,7 @@ const {
 } = internalBinding('python');
 
 module.exports = {
-    call: function() { return call(); }
+    call: call }
 }
 
 /*
