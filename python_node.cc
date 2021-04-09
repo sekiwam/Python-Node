@@ -39,15 +39,19 @@ namespace python_node
 
         args.GetReturnValue().Set(static_cast<uint32_t>(955));
         printf("@[%d]", args.Length());
-        auto arg2 = args[0].As<String>(); // python func name
+        auto modulePath = args[0].As<String>(); // python func name
 
-		v8::String::Utf8Value utf_str_2(args.GetIsolate(), arg2);// jsobj->ToString());
+
+        auto *isolate = args.GetIsolate();
+        
+		v8::String::Utf8Value utf_str_2(isolate, modulePath);
 
 		auto pythonPath = std::string(*utf_str_2);
         printf("@[%s]", pythonPath.c_str());
 
         // Py_INCREF(sys_);
     }
+
 
     void init_pythonNode()
     {
@@ -58,8 +62,8 @@ namespace python_node
     void Initialize(Local<Object> target,
                     Local<Value> unused,
                     Local<Context> context,
-                    void *priv)
-    {
+                    void *priv
+    ) {
         init_pythonNode();
 
         plynth::WeakValueMap *a = nullptr;
