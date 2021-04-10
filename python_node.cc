@@ -43,18 +43,24 @@ namespace python_node
         auto modulePath = args[0].As<String>(); // module path to invoke
         auto funcPath = args[1].As<String>();   // python func name
 
+        
         auto *isolate = args.GetIsolate();
-        auto prop_name = v8::String::NewFromUtf8(isolate, "jfow", v8::NewStringType::kNormal).ToLocalChecked();
 
-        const auto context = isolate->GetCurrentContext();
-        const auto newProxy = v8::Proxy::New(context, prop_name, prop_name).ToLocalChecked();
-
-        const auto jsObj = v8::Object::New(isolate);
-
-        auto get_symbol = String::NewFromUtf8(isolate, "get", v8::NewStringType::kNormal).ToLocalChecked();
-
+        // test of proxy
         {
-            auto jsfunc = [](const FunctionCallbackInfo<Value> &info) {
+            auto prop_name = v8::String::NewFromUtf8(isolate, "jfow", v8::NewStringType::kNormal).ToLocalChecked();
+
+            const auto context = isolate->GetCurrentContext();
+            const auto newProxy = v8::Proxy::New(context, prop_name, prop_name).ToLocalChecked();
+
+            const auto jsObj = v8::Object::New(isolate);
+
+            auto get_symbol = String::NewFromUtf8(isolate, "get", v8::NewStringType::kNormal).ToLocalChecked();
+
+            auto jsfunc = [](const FunctionCallbackInfo<Value> &info)
+            {
+
+
             };
 
             auto context = isolate->GetCurrentContext();
