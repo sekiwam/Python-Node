@@ -44,7 +44,7 @@ namespace python_node
         auto funcPath = args[1].As<String>();   // python func name
 
         
-        v8::Isolate *isolate = args.GetIsolate();
+        auto *isolate = args.GetIsolate();
 
         // test of proxy
         {
