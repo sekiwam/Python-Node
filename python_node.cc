@@ -69,7 +69,7 @@ namespace python_node
             const auto result = jsObj->Set(context, get_symbol, func);
 
 
-            //const auto newProxy = v8::Proxy::New(context, prop_name.As<v8::Object>(), jsObj).ToLocalChecked();
+            const auto newProxy = v8::Proxy::New(context, jsObj, jsObj).ToLocalChecked();
         }
 
         v8::String::Utf8Value utf_str_2(isolate, modulePath);
