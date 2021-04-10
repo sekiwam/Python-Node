@@ -64,7 +64,6 @@ namespace python_node
 
             };
 
-            auto context = isolate->GetCurrentContext();
             auto passData = String::NewFromUtf8(isolate, "abc", v8::NewStringType::kNormal).ToLocalChecked();
             auto func = v8::Function::New(context, jsfunc, passData).ToLocalChecked();
             const auto result = jsObj->Set(context, get_symbol, func);
