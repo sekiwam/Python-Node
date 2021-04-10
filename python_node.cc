@@ -44,14 +44,15 @@ namespace python_node
         auto funcPath = args[1].As<String>();   // python func name
 
         
-        auto *isolate = args.GetIsolate();
+        v8::Isolate *isolate = args.GetIsolate();
 
         // test of proxy
         {
             auto prop_name = v8::String::NewFromUtf8(isolate, "jfow", v8::NewStringType::kNormal).ToLocalChecked();
 
+
             const auto context = isolate->GetCurrentContext();
-            const auto newProxy = v8::Proxy::New(context, prop_name, prop_name).ToLocalChecked();
+            
 
             const auto jsObj = v8::Object::New(isolate);
 
@@ -67,6 +68,9 @@ namespace python_node
             auto passData = String::NewFromUtf8(isolate, "abc", v8::NewStringType::kNormal).ToLocalChecked();
             auto func = v8::Function::New(context, jsfunc, passData).ToLocalChecked();
             const auto result = jsObj->Set(context, get_symbol, func);
+
+
+            const auto newProxy = v8::Proxy::New(context, prop_name, jsObj).ToLocalChecked();
         }
 
         v8::String::Utf8Value utf_str_2(isolate, modulePath);
