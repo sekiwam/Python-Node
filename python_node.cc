@@ -28,6 +28,7 @@ using v8::TryCatch;
 using v8::Uint32;
 using v8::Value;
 
+using fn = int;
 namespace python_node
 {
     static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
@@ -39,31 +40,52 @@ namespace python_node
 
         args.GetReturnValue().Set(static_cast<uint32_t>(955));
         printf("@[%d]", args.Length());
-        auto modulePath = args[0].As<String>(); // python func name
-
+        auto modulePath = args[0].As<String>(); // module path to invoke
+        auto funcPath = args[1].As<String>();   // python func name
 
         auto *isolate = args.GetIsolate();
-        
-		v8::String::Utf8Value utf_str_2(isolate, modulePath);
+        auto prop_name = v8::String::NewFromUtf8(isolate, "jfow", v8::NewStringType::kNormal).ToLocalChecked();
 
-		auto pythonPath = std::string(*utf_str_2);
+        const auto context = isolate->GetCurrentContext();
+        const auto newProxy = v8::Proxy::New(context, prop_name, prop_name).ToLocalChecked();
+
+        const auto jsObj = v8::Object::New(isolate);
+
+        auto get_symbol = String::NewFromUtf8(isolate, "get", v8::NewStringType::kNormal).ToLocalChecked();
+
+        {
+            auto jsfunc = [](const FunctionCallbackInfo<Value> &info) {
+            };
+
+            auto context = isolate->GetCurrentContext();
+            auto passData = String::NewFromUtf8(isolate, "abc", v8::NewStringType::kNormal).ToLocalChecked();
+            auto func = v8::Function::New(context, jsfunc, passData).ToLocalChecked();
+            const auto result = jsObj->Set(context, get_symbol, func);
+        }
+
+        v8::String::Utf8Value utf_str_2(isolate, modulePath);
+
+        auto pythonPath = std::string(*utf_str_2);
         printf("@[%s]", pythonPath.c_str());
 
         // Py_INCREF(sys_);
     }
 
+    fn awef()
+    {
+        int k = 1423;
+    }
 
     void init_pythonNode()
     {
         start();
     }
 
-
     void Initialize(Local<Object> target,
                     Local<Value> unused,
                     Local<Context> context,
-                    void *priv
-    ) {
+                    void *priv)
+    {
         init_pythonNode();
 
         plynth::WeakValueMap *a = nullptr;
