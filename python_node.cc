@@ -38,7 +38,6 @@ namespace python_node
         //PyEval_InitThreads();
         //PyObject *sys_ = PyImport_ImportModule("sys");
 
-        args.GetReturnValue().Set(static_cast<uint32_t>(955));
         printf("@[%d]", args.Length());
         auto modulePath = args[0].As<String>(); // module path to invoke
         auto funcPath = args[1].As<String>();   // python func name
@@ -60,16 +59,19 @@ namespace python_node
 
             auto jsfunc = [](const FunctionCallbackInfo<Value> &info)
             {
-
-
+                info.GetReturnValue().Set(3);
             };
 
             auto passData = String::NewFromUtf8(isolate, "abc", v8::NewStringType::kNormal).ToLocalChecked();
             auto func = v8::Function::New(context, jsfunc, passData).ToLocalChecked();
             const auto result = jsObj->Set(context, get_symbol, func);
 
-
             const auto newProxy = v8::Proxy::New(context, jsObj, jsObj).ToLocalChecked();
+
+            args.GetReturnValue().Set(newProxy);
+            
+            //static_cast<uint32_t>(955));
+
         }
 
         v8::String::Utf8Value utf_str_2(isolate, modulePath);
