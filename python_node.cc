@@ -31,6 +31,11 @@ using v8::Value;
 using fn = int;
 namespace python_node
 {
+
+    class PyObj : v8::Object {
+
+    };
+
     static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
     {
         //args.GetReturnValue().Set(result);
@@ -67,6 +72,7 @@ namespace python_node
             const auto result = jsObj->Set(context, get_symbol, func);
 
             const auto newProxy = v8::Proxy::New(context, jsObj, jsObj).ToLocalChecked();
+            
 
             args.GetReturnValue().Set(newProxy);
 
@@ -82,10 +88,7 @@ namespace python_node
         // Py_INCREF(sys_);
     }
 
-    fn awef()
-    {
-        int k = 1423;
-    }
+
 
     void init_pythonNode()
     {
