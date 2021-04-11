@@ -59,7 +59,7 @@ namespace python_node
 
             auto jsfunc = [](const FunctionCallbackInfo<Value> &info)
             {
-                info.GetReturnValue().Set(3);
+                info.GetReturnValue().Set(300);
             };
 
             auto passData = String::NewFromUtf8(isolate, "abc", v8::NewStringType::kNormal).ToLocalChecked();
@@ -69,7 +69,7 @@ namespace python_node
             const auto newProxy = v8::Proxy::New(context, jsObj, jsObj).ToLocalChecked();
 
             args.GetReturnValue().Set(newProxy);
-            
+
             //static_cast<uint32_t>(955));
 
         }
