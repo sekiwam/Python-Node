@@ -38,10 +38,6 @@ namespace python_node
 
     static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
     {
-        //args.GetReturnValue().Set(result);
-        //Py_InitializeEx(0);
-        //PyEval_InitThreads();
-        //PyObject *sys_ = PyImport_ImportModule("sys");
 
         printf("@[%d]", args.Length());
         auto modulePath = args[0].As<String>(); // module path to invoke
@@ -54,10 +50,7 @@ namespace python_node
         {
             auto prop_name = v8::String::NewFromUtf8(isolate, "jfow", v8::NewStringType::kNormal).ToLocalChecked();
 
-
             const auto context = isolate->GetCurrentContext();
-            
-
             const auto jsObj = v8::Object::New(isolate);
 
             auto get_symbol = String::NewFromUtf8(isolate, "get", v8::NewStringType::kNormal).ToLocalChecked();
@@ -73,6 +66,7 @@ namespace python_node
 
             const auto newProxy = v8::Proxy::New(context, jsObj, jsObj).ToLocalChecked();
             
+            PyObject *sys_ = PyImport_ImportModule("sys");
 
             args.GetReturnValue().Set(newProxy);
 
