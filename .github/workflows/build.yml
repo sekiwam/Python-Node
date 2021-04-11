@@ -70,7 +70,7 @@ jobs:
       - name: Run on Windows - call .bat files
         shell: bash
         run:
-            ./nodejs/out/Release/node -e "console.info(require('python').call())"
+            ./nodejs/out/Release/node -e "console.info(require('python').call('aef').b)"
 
 #      - name: Copy artifact
 #        shell: bash
