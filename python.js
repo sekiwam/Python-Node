@@ -25,11 +25,13 @@
 'use strict';
 
 const {
-    call
+    call,
+    importModule
 } = internalBinding('python');
 
 module.exports = {
-    call: call 
+    call: call,
+    importModule: importModule
 }
 
 /*
