@@ -36,6 +36,13 @@ namespace python_node
 
     };
 
+
+    static void importModule(const FunctionCallbackInfo<Value> &args)
+    {
+
+    }
+
+    
     static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
     {
 
@@ -55,8 +62,7 @@ namespace python_node
 
             auto get_symbol = String::NewFromUtf8(isolate, "get", v8::NewStringType::kNormal).ToLocalChecked();
 
-            auto jsfunc = [](const FunctionCallbackInfo<Value> &info)
-            {
+            auto jsfunc = [](const FunctionCallbackInfo<Value> &info) {
                 info.GetReturnValue().Set(300);
             };
 
@@ -99,6 +105,7 @@ namespace python_node
         Isolate *isolate = env->isolate();
 
         env->SetMethod(target, "call", StartPythonScript);
+        env->SetMethod(target, "importModule", importModule);
     }
 
 } // namespace node
