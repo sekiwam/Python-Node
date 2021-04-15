@@ -37,12 +37,12 @@ namespace python_node
     };
 
 
-    static void importModule(const FunctionCallbackInfo<Value> &args)
+    static void importPythonModule(const FunctionCallbackInfo<Value> &args)
     {
 
     }
 
-    
+
     static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
     {
 
@@ -105,7 +105,7 @@ namespace python_node
         Isolate *isolate = env->isolate();
 
         env->SetMethod(target, "call", StartPythonScript);
-        env->SetMethod(target, "importModule", importModule);
+        env->SetMethod(target, "importModule", importPythonModule);
     }
 
 } // namespace node
