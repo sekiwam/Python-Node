@@ -39,7 +39,21 @@ namespace python_node
 
     static void importPythonModule(const FunctionCallbackInfo<Value> &args)
     {
+        if (args[0].IsEmpty()) {
+            return;
+        }
 
+        auto *isolate = args.GetIsolate();
+        auto moduleName = args[0].As<String>();
+        if (moduleName.IsEmpty() || moduleName->Length() == 0) {
+            return;
+        }
+
+        v8::String::Utf8Value utf_str_2(isolate, moduleName);
+        auto pythonPath = std::string(*utf_str_2);
+        if (pythonPath == "sys") {
+            PyObject *sys_ = PyImport_ImportModule("sys");
+        }
     }
 
 
