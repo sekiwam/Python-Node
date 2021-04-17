@@ -54,6 +54,9 @@ namespace python_node
         if (pythonPath == "sys") {
             PyObject *sys_ = PyImport_ImportModule("sys");
         }
+
+        args.GetReturnValue().Set(32);
+
     }
 
 
