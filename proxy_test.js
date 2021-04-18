@@ -38,6 +38,7 @@ const handler2 = {
 const proxy2 = new Proxy(target, handler2);
 
 console.info(proxy2.wow)
+console.info(proxy2[0])
 
 
 function extend(sup, base) {

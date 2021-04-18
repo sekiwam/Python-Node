@@ -53,17 +53,21 @@ namespace python_node
         auto pythonPath = std::string(*utf_str_2);
         if (pythonPath == "sys") {
             PyObject *sys_ = PyImport_ImportModule("sys");
+            PyObject *getter = PyObject_GetAttrString(sys_, "getswitchinterval");
+            
+            if (PyObject* future = PyObject_CallObject(getter, NULL)) {
+                auto double_value = PyFloat_AsDouble(future);
+                args.GetReturnValue().Set(double_value);
+            }
         }
 
-        args.GetReturnValue().Set(32);
+        const auto jsObj = v8::Object::New(isolate);
 
     }
 
 
-
     static void StartPythonScript(const FunctionCallbackInfo<Value> &args)
     {
-
         printf("@[%d]", args.Length());
         auto modulePath = args[0].As<String>(); // module path to invoke
         auto funcPath = args[1].As<String>();   // python func name
