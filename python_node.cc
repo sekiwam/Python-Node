@@ -36,6 +36,12 @@ namespace python_node
 
     };
 
+  // the weak handler function is as follows: 
+    static void weakCallbackForObjectHolder(
+        const v8::WeakCallbackInfo<int>& data) {
+        //delete data.GetParameter();
+    }
+
 
     static void importPythonModule(const FunctionCallbackInfo<Value> &args)
     {
@@ -62,6 +68,9 @@ namespace python_node
         }
 
         const auto jsObj = v8::Object::New(isolate);
+        v8::Persistent<Object> g;
+        g.SetWeak((int*)nullptr, weakCallbackForObjectHolder,     
+                          v8::WeakCallbackType::kParameter);
 
     }
 
