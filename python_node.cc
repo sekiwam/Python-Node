@@ -65,16 +65,19 @@ namespace python_node
             
             if (PyObject* future = PyObject_CallObject(getter, NULL)) {
                 auto double_value = PyFloat_AsDouble(future);
-                args.GetReturnValue().Set(double_value);
+
+
+                 const auto jsObj = v8::Object::New(isolate);
+                    v8::Persistent<Object> g;
+                    g.Reset(isolate, jsObj);
+                    g.SetWeak((int*)nullptr, weakCallbackForObjectHolder,     
+                                    v8::WeakCallbackType::kParameter);
+                    g.Reset();
+                    args.GetReturnValue().Set(jsObj);
             }
         }
 
-        const auto jsObj = v8::Object::New(isolate);
-        v8::Persistent<Object> g;
-        g.Reset(isolate, jsObj);
-        g.SetWeak((int*)nullptr, weakCallbackForObjectHolder,     
-                          v8::WeakCallbackType::kParameter);
-        g.Reset();
+       
 
     }
 
