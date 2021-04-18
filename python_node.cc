@@ -40,6 +40,8 @@ namespace python_node
     static void weakCallbackForObjectHolder(
         const v8::WeakCallbackInfo<int>& data) {
         //delete data.GetParameter();
+        printf("released ");
+        fflush(stdout);
     }
 
 
@@ -69,8 +71,10 @@ namespace python_node
 
         const auto jsObj = v8::Object::New(isolate);
         v8::Persistent<Object> g;
+        g.Reset(isolate, jsObj);
         g.SetWeak((int*)nullptr, weakCallbackForObjectHolder,     
                           v8::WeakCallbackType::kParameter);
+        g.Reset();
 
     }
 
