@@ -72,7 +72,7 @@ namespace python_node
                     g.Reset(isolate, jsObj);
                     g.SetWeak((int*)nullptr, weakCallbackForObjectHolder,     
                                     v8::WeakCallbackType::kParameter);
-                    g.Reset();
+                    //g.Reset();
                     args.GetReturnValue().Set(jsObj);
             }
         }
