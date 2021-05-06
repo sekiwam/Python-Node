@@ -75,6 +75,7 @@ namespace plynth
     void WeakValueMap::finalizationCb(const v8::WeakCallbackInfo<FinalizationCbData> &data)
     {
         auto *d = data.GetParameter();
+        //d->pair->first->at(d->pair->second).value.Reset();
         auto id = d->weakValueMapInstanceId;
         // Check that WeakValueMap hasn't been deleted
         if (WeakValueMap::instanceMap->count(id) != 0) {
